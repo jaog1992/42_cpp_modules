@@ -27,9 +27,14 @@
 // Fixed column width
 #define COLUMNWIDTH      10
 
+// Is list empty?
+#define LISTEMPTY_FALSE  0
+#define LISTEMPTY_TRUE   1
+
 // Colors
 # define RED              "\001\e[0;91m\002"
 # define GREEN            "\001\e[0;92m\002"
+# define YELLOW           "\001\e[0;93m\002"
 # define BLUE             "\001\e[0;94m\002"
 # define BLUE_ITALIC      "\001\e[3;94m\002"
 # define DEF_COLOR        "\001\e[0;39m\002"
@@ -40,7 +45,7 @@ class Contact
         Contact(void);
         ~Contact(void);
         void        setInfo(int index, std::string *info);
-        void        displayList(void);
+        int         displayList(void);
         void        displayContact(void);
 
     private:

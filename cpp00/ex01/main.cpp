@@ -6,7 +6,7 @@
 /*   By: jde-orma <jde-orma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/17 19:03:23 by jde-orma          #+#    #+#             */
-/*   Updated: 2024/08/17 19:03:23 by jde-orma         ###   ########.fr       */
+/*   Updated: 2024/08/19 13:55:23 by jde-orma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,13 +35,20 @@ int	main(int argc, char **argv)
 				book.addContact();
 			else if (buff == "SEARCH")
 			{
-				book.printContacts();
-				book.display();
+				if(book.printContacts() == LISTEMPTY_FALSE)
+				{
+					book.display();
+				}
 			}
 			else if (buff == "EXIT")
 				break ;	
 			else
-				std::cout << RED << "Error:" << DEF_COLOR << " Invalid command" << std::endl;
+			{
+				std::cout << RED << "Error:" << DEF_COLOR << " Invalid command. The only valid commands are ";
+				std::cout << GREEN << "ADD" << DEF_COLOR << ", ";
+				std::cout << GREEN << "SEARCH" << DEF_COLOR << " and ";
+				std::cout << GREEN << "EXIT" << DEF_COLOR << " (uppercase only)" << std::endl;
+			}
 		}
 	}
 	return (EXIT_SUCCESS);

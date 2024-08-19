@@ -38,7 +38,7 @@ class PhoneBook
         PhoneBook(void);
         ~PhoneBook(void);
         void         addContact(void);
-        void         printContacts(void);
+        int          printContacts(void);
         void         display(void);
 
     private:

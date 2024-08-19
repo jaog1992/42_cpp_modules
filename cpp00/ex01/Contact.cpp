@@ -35,18 +35,23 @@ std::string Contact::_truncateInfo(std::string info) const
 {
     if (info.size() > COLUMNWIDTH)
         return info.substr(0, COLUMNWIDTH - 1) + ".";
+
     return info;
 }
 
-void	Contact::displayList(void)
+int	Contact::displayList(void)
 {
+	if ((this->_FirstName.empty() || this->_LastName.empty() || this->_NickName.empty()) && _index == 0)
+		return LISTEMPTY_TRUE;
 	if (this->_FirstName.empty() || this->_LastName.empty() || this->_NickName.empty())
-		return ;
+		return 0;
 	std::cout << "|" << std::setw(COLUMNWIDTH) << this->_index + 1;
 	std::cout << "|" << std::setw(COLUMNWIDTH) << this->_truncateInfo(this->_FirstName);
 	std::cout << "|" << std::setw(COLUMNWIDTH) << this->_truncateInfo(this->_LastName);
 	std::cout << "|" << std::setw(COLUMNWIDTH) << this->_truncateInfo(this->_NickName);
 	std::cout << "|" << std::endl;
+
+	return LISTEMPTY_FALSE;
 }
 
 void	Contact::displayContact(void)
