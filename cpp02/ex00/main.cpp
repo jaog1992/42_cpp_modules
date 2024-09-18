@@ -1,20 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   randomChump.cpp                                    :+:      :+:    :+:   */
+/*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jde-orma <jde-orma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/19 21:38:15 by jde-orma          #+#    #+#             */
-/*   Updated: 2024/08/19 21:38:15 by jde-orma         ###   ########.fr       */
+/*   Created: 2024/09/15 23:31:32 by jde-orma          #+#    #+#             */
+/*   Updated: 2024/09/15 23:31:32 by jde-orma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "Zombie.hpp"
+#include "Fixed.hpp"
 
-void    randomChump( std::string name )
+int main(void) 
 {
-    Zombie	zombie(name);
-    
-    zombie.announce();
+	Fixed a;
+	Fixed b(a);
+	Fixed c;
+
+	c = b;
+	std::cout << a.getRawBits() << std::endl;
+	std::cout << b.getRawBits() << std::endl;
+	std::cout << c.getRawBits() << std::endl;
+	return (EXIT_SUCCESS);
 }

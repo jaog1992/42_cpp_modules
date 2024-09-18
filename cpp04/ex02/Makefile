@@ -6,7 +6,7 @@
 #    By: jde-orma <jde-orma@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/22 20:52:59 by jde-orma          #+#    #+#              #
-#    Updated: 2024/08/22 20:52:59 by jde-orma         ###   ########.fr        #
+#    Updated: 2024/09/15 23:31:32 by jde-orma         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,14 +31,14 @@ OBJ_DIR     = ./
 BIN_DIR     = ./
 
 # Files:
-SRC_FILE	= main.cpp Harl.cpp
+SRC_FILE	= main.cpp AAnimal.cpp Dog.cpp Cat.cpp Brain.cpp
 SRC         = $(addprefix $(SRC_DIR), $(SRC_FILE))
 
 OBJ_FILE    = $(SRC_FILE:.cpp=.o)
 OBJ         = $(addprefix $(OBJ_DIR), $(OBJ_FILE))
 
 # Exec name:
-NAME        = Harl
+NAME        = AAnimal
 
 # Binary directory placement:
 CODE_BIN    = $(BIN_DIR)$(NAME)

@@ -1,20 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   randomChump.cpp                                    :+:      :+:    :+:   */
+/*   Cat.hpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jde-orma <jde-orma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/19 21:38:15 by jde-orma          #+#    #+#             */
-/*   Updated: 2024/08/19 21:38:15 by jde-orma         ###   ########.fr       */
+/*   Created: 2024/09/17 19:17:31 by jde-orma          #+#    #+#             */
+/*   Updated: 2024/09/17 19:17:31 by jde-orma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "Zombie.hpp"
+#ifndef CAT_HPP
+# define CAT_HPP
 
-void    randomChump( std::string name )
+#include "AAnimal.hpp"
+
+class Cat : public AAnimal
 {
-    Zombie	zombie(name);
+    public:
+    	Cat(void);
+    	Cat(const Cat& other);
+    	virtual ~Cat(void);
     
-    zombie.announce();
-}
+    	Cat	&operator=(const Cat& other);
+    
+    	virtual void	makeSound(void) const;
+};
+
+#endif

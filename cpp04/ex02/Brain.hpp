@@ -1,20 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   randomChump.cpp                                    :+:      :+:    :+:   */
+/*   Brain.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jde-orma <jde-orma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/19 21:38:15 by jde-orma          #+#    #+#             */
-/*   Updated: 2024/08/19 21:38:15 by jde-orma         ###   ########.fr       */
+/*   Created: 2024/09/17 19:25:18 by jde-orma          #+#    #+#             */
+/*   Updated: 2024/09/17 19:25:18 by jde-orma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "Zombie.hpp"
+#ifndef BRAIN_HPP
+# define BRAIN_HPP
 
-void    randomChump( std::string name )
+# include <iostream>
+# include <sstream>
+
+class Brain
 {
-    Zombie	zombie(name);
+
+    public:
+    	Brain(void);
+    	Brain(const Brain &source);
+    	~Brain(void);
+
+    	Brain	&operator=(const Brain &other);
+
+    	std::string	*getIdeas(void);
     
-    zombie.announce();
-}
+    private:
+    	std::string _ideas[100];
+};
+
+#endif

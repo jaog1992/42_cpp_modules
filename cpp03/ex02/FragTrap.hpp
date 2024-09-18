@@ -1,20 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   randomChump.cpp                                    :+:      :+:    :+:   */
+/*   FragTrap.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jde-orma <jde-orma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/19 21:38:15 by jde-orma          #+#    #+#             */
-/*   Updated: 2024/08/19 21:38:15 by jde-orma         ###   ########.fr       */
+/*   Created: 2024/09/17 19:04:52 by jde-orma          #+#    #+#             */
+/*   Updated: 2024/09/17 19:04:52 by jde-orma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "Zombie.hpp"
+#ifndef FRAGTRAP_HPP
+# define FRAGTRAP_HPP
 
-void    randomChump( std::string name )
+#include "ClapTrap.hpp"
+
+class FragTrap : public ClapTrap
 {
-    Zombie	zombie(name);
-    
-    zombie.announce();
-}
+	public:
+		FragTrap(void);
+		FragTrap(std::string name);
+		FragTrap(const FragTrap& other);
+		~FragTrap(void);
+
+		FragTrap	&operator=(const FragTrap &other);
+		
+        void	highFivesGuys(void);
+};
+
+#endif

@@ -1,20 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   randomChump.cpp                                    :+:      :+:    :+:   */
+/*   Animal.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jde-orma <jde-orma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/19 21:38:15 by jde-orma          #+#    #+#             */
-/*   Updated: 2024/08/19 21:38:15 by jde-orma         ###   ########.fr       */
+/*   Created: 2024/09/17 19:15:25 by jde-orma          #+#    #+#             */
+/*   Updated: 2024/09/18 23:46:53 by jde-orma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "Zombie.hpp"
+#ifndef ANIMAL_HPP
+# define ANIMAL_HPP
 
-void    randomChump( std::string name )
+# include <iostream>
+
+class Animal
 {
-    Zombie	zombie(name);
-    
-    zombie.announce();
-}
+
+    public:
+    	Animal(void);
+    	Animal(std::string animal_type);
+    	Animal(const Animal& other);
+    	virtual ~Animal(void);
+
+    	Animal	&operator=(const Animal& other);
+
+    	std::string		getType(void) const;
+    	virtual void	makeSound(void) const;
+
+    protected:
+    	std::string _type;
+
+};
+
+#endif

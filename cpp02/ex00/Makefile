@@ -31,14 +31,14 @@ OBJ_DIR     = ./
 BIN_DIR     = ./
 
 # Files:
-SRC_FILE	= main.cpp Harl.cpp
+SRC_FILE	= main.cpp Fixed.cpp
 SRC         = $(addprefix $(SRC_DIR), $(SRC_FILE))
 
 OBJ_FILE    = $(SRC_FILE:.cpp=.o)
 OBJ         = $(addprefix $(OBJ_DIR), $(OBJ_FILE))
 
 # Exec name:
-NAME        = Harl
+NAME        = Fixed
 
 # Binary directory placement:
 CODE_BIN    = $(BIN_DIR)$(NAME)

@@ -66,7 +66,7 @@ static std::string  *generate_horde_name(int size)
     // Seed the random number generator
     std::srand(static_cast<unsigned int>(std::time(NULL)));
     // Select and print the randomly chosen names
-    std::cout << std::endl << "Creating the horde of Basque Zombies: ";
+    std::cout << std::endl << "Creating random hordes of Basque Zombies: ";
     for (int i = 0; i < size; i++) {
         
         int randomIndex = std::rand() % numNames;

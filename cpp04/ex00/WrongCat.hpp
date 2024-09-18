@@ -1,20 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   randomChump.cpp                                    :+:      :+:    :+:   */
+/*   WrongCat.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jde-orma <jde-orma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/19 21:38:15 by jde-orma          #+#    #+#             */
-/*   Updated: 2024/08/19 21:38:15 by jde-orma         ###   ########.fr       */
+/*   Created: 2024/09/17 19:22:07 by jde-orma          #+#    #+#             */
+/*   Updated: 2024/09/17 19:22:07 by jde-orma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "Zombie.hpp"
+#ifndef WRONGCAT_HPP
+# define WRONGCAT_HPP
 
-void    randomChump( std::string name )
+# include "WrongAnimal.hpp"
+
+class WrongCat : public WrongAnimal
 {
-    Zombie	zombie(name);
-    
-    zombie.announce();
-}
+	public:
+		WrongCat(void);
+		WrongCat(const WrongCat& other);
+		virtual ~WrongCat(void);
+	
+		WrongCat	&operator=(const WrongCat &other);
+};
+
+#endif
