@@ -12,9 +12,11 @@
 
 #include "FileReplacer.hpp"
 
-// c_str converts a std::string object into a null terminated char array (a c str)
-// is_open return a true if the file is open (file stream associated with the file)
-// else false
+/*
+  c_str converts a std::string object into a null terminated char array (a c str)
+  which is needed on the ifstream constructor and open fuction
+  is_open returns a true if the file is open (file stream associated with the file)
+*/
 FileReplacer::FileReplacer(const std::string& filename, 
 						   const std::string& s1,
 						   const std::string& s2)
@@ -59,14 +61,16 @@ FileReplacer::~FileReplacer(void)
 	return ;
 }
 
-//find searches for the first occurrence of the substring _search_string within the string line, 
-// starting from the position start_pos. If found returns the first char index; else std::string::npos
-// If the searched string is within the line we save it´s first char in found pos
-// If found pos is not equal to std::string::npos then we write al the chars since
-// start_pos to found pos to the output and then we add the replacement string.
-// Then we move the start position to the end of this replace string in the output stream
-// We then search for the next ocurrence of search_string for the next loop
-// npos is the maximum valu of size_t
+/* find searches for the first occurrence of the substring _search_string within the string line, 
+   starting from the position start_pos. If found returns the first char index; else std::string::npos
+   If the searched string is within the line we save it´s first char in found pos
+   If found pos is not equal to std::string::npos then we write al the chars since
+   start_pos to found pos to the output and then we add the replacement string.
+   Then we move the start position to the end of this replace string in the output stream
+   We then search for the next ocurrence of search_string for the next loop
+   
+   npos is the maximum value of size_t
+*/
 void FileReplacer::_replace(const std::string& line) 
 {
 	size_t	start_pos = 0;
