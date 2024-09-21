@@ -18,6 +18,11 @@
 # define BLUE             "\001\e[0;94m\002"
 # define DEF_COLOR        "\001\e[0;39m\002"
 
+/* A reference acts as an alias for the referenced variable, allowing direct access 
+to the original variable. It cannot hold a null value or change to refer to another 
+variable once initialized. Using references in function arguments is generally 
+more efficient for large objects, as it avoids unnecessary copies. C does not 
+implement references; instead, pointers are used to achieve similar functionality.*/
 int	main(void)
 {
     std::string str = "HI THIS IS BRAIN";

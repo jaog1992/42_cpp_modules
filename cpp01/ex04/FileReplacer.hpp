@@ -28,6 +28,7 @@ class FileReplacer
     public:
 	    FileReplacer(const std::string& filename, const std::string& s1, const std::string& s2);
 	    ~FileReplacer(void);
+		
     private:
     	std::string   _filename;
     	std::string   _search_string;

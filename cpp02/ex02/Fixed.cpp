@@ -50,7 +50,7 @@ Fixed &Fixed::operator=(const Fixed &other)
     std::cout << "Copy assignment operator called" << std::endl;
     if (this == &other)
         return (*this);
-    _fixed = other.getFixed();
+    _fixed = other.getRawBits();
     return (*this);
 }
 
@@ -58,32 +58,32 @@ Fixed &Fixed::operator=(const Fixed &other)
 // Comparison Operator overload
 bool Fixed::operator>(const Fixed &other) const
 {
-	return (_fixed > other.getFixed());
+	return (_fixed > other.getRawBits());
 }
 
 bool Fixed::operator<(const Fixed &other) const
 {
-	return (_fixed < other.getFixed());
+	return (_fixed < other.getRawBits());
 }
 
 bool Fixed::operator>=(const Fixed &other) const
 {
-	return (_fixed >= other.getFixed());
+	return (_fixed >= other.getRawBits());
 }
 
 bool Fixed::operator<=(const Fixed &other) const
 {
-	return (_fixed <= other.getFixed());
+	return (_fixed <= other.getRawBits());
 }
 
 bool Fixed::operator==(const Fixed &other) const
 {
-	return (_fixed == other.getFixed());
+	return (_fixed == other.getRawBits());
 }
 
 bool Fixed::operator!=(const Fixed &other) const
 {
-	return (_fixed != other.getFixed());
+	return (_fixed != other.getRawBits());
 }
 
 Fixed Fixed::operator+(const Fixed &other) const
@@ -132,12 +132,12 @@ Fixed Fixed::operator--(int)
 	return (tmp);
 }
 
-int Fixed::getFixed(void) const
+int Fixed::getRawBits(void) const
 {
     return(_fixed);
 }
 
-void Fixed::setFixed(int const fixed)
+void Fixed::setRawBits(int const fixed)
 {
     _fixed = fixed;
     return ;

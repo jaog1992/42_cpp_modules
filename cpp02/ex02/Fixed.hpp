@@ -42,8 +42,8 @@ class Fixed
 	    Fixed	&operator--(void);
 	    Fixed	operator--(int);
 
-        int   getFixed(void) const;
-        void  setFixed(int const raw);
+        int   getRawBits(void) const;
+        void  setRawBits(int const raw);
         float toFloat(void) const;
         int   toInt(void) const;
 

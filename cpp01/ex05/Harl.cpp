@@ -45,6 +45,7 @@ void	Harl::_error(void)
 void	Harl::complain(const std::string& level)
 {
 	std::string levels[4] = {"DEBUG", "INFO", "WARNING", "ERROR"};
+	// An array of pointers to member functions of the Harl class that return void and take no parameters
 	void (Harl::*methods[4])(void) = {&Harl::_debug, &Harl::_info, &Harl::_warning, &Harl::_error};
 
 	for (int i = 0; i < 4; i++)
