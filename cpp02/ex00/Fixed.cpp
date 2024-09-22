@@ -18,7 +18,7 @@ Fixed::Fixed(void) : _fixed(0)
     return ;
 }
 
-Fixed::Fixed(const Fixed &other) : _fixed(other._fixed)
+Fixed::Fixed(const Fixed &other) : _fixed(other.getRawBits())
 {
     std::cout << "Copy constructor called" << std::endl;
     return ;

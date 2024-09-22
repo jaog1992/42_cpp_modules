@@ -11,13 +11,13 @@
 /* ************************************************************************** */
 
 #include "Fixed.hpp"
-// #include <bitset>
+#include <bitset>
 
-// std::bitset<32> printBinary(int value)
-// {
-//     std::bitset<32> binary(value);
-//     return(binary);
-// }
+std::bitset<32> printBinary(int value)
+{
+    std::bitset<32> binary(value);
+    return(binary);
+}
 
 // The fixed part of the fixed-point number is done using 24 bits.
 // The fractional part of the fixed-point number is done using 8 bits(LSB).
@@ -51,7 +51,6 @@ int main(void)
 	std::cout << "c is " << c.toInt() << " as integer" << std::endl;
 	std::cout << "d is " << d.toInt() << " as integer" << std::endl;
 
-	// std::cout << "a is " << a <<
     // std::cout << "[aFloat, aBinaryFloat, aInt, aIntBinary]["
     //           << a << ", " 
     //           << printBinary(a.getRawBits()) << ", " 

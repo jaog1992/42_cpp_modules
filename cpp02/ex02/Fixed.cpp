@@ -18,7 +18,7 @@ Fixed::Fixed(void) : _fixed(0)
     return ;
 }
 
-Fixed::Fixed(const Fixed &other) : _fixed(other._fixed)
+Fixed::Fixed(const Fixed &other) : _fixed(other.getRawBits())
 {
     std::cout << "Copy constructor called" << std::endl;
     return ;
@@ -132,6 +132,12 @@ Fixed Fixed::operator--(int)
 	return (tmp);
 }
 
+std::ostream &operator<<(std::ostream &out, const Fixed &fixed)
+{
+    out << fixed.toFloat();
+    return (out);
+}
+
 int Fixed::getRawBits(void) const
 {
     return(_fixed);
@@ -173,8 +179,3 @@ const Fixed &Fixed::max(const Fixed &a, const Fixed &b)
 	return (a > b ? a : b);
 }
 
-std::ostream &operator<<(std::ostream &out, const Fixed &fixed)
-{
-    out << fixed.toFloat();
-    return (out);
-}
