@@ -52,13 +52,11 @@ int	main(void)
 
 static std::string  *generate_horde_name(int size)
 {
-    const int numNames = 26;
+    const int numNames = 8;
     // Creating a zombie horde   
-    std::string zombieNames[] = {
-        "Paule", "Elene", "Nikole", "Libe", "Mari", "Erensuge", "Urtzi", 
-        "Lamia", "Basajaun", "Gentila", "Jauntxo", "Santxo", "Don Diego", "Doña Casilda", 
-        "Eneko", "Fortun", "Eudon", "Jon Ander", "Xabier", "Asier", 
-        "Andoni", "Arrate", "Fortun", "Santxa", "Lourdes", "Idoia"
+    std::string zombieNames[] = 
+    {
+        "Mari", "Erensuge", "Urtzi", "Lamia", "Basajaun", "Gentila",  "Don Diego", "Doña Casilda"
     };
     std::string *hordeNames = new std::string[size];
     int char_count = 0;
@@ -67,13 +65,15 @@ static std::string  *generate_horde_name(int size)
     std::srand(static_cast<unsigned int>(std::time(NULL)));
     // Select and print the randomly chosen names
     std::cout << std::endl << "Creating random hordes of Basque Zombies: ";
-    for (int i = 0; i < size; i++) {
+    for (int i = 0; i < size; i++)
+    {
         
         int randomIndex = std::rand() % numNames;
         hordeNames[i] = zombieNames[randomIndex];
         std::cout << GREEN << hordeNames[i] << DEF_COLOR;
         char_count += hordeNames[i].size();
-        if (i < size - 1) {
+        if (i < size - 1) 
+        {
             std::cout << ", ";
             char_count += 2;
         }

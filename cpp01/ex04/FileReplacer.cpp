@@ -31,10 +31,11 @@ FileReplacer::FileReplacer(const std::string& filename,
 		throw std::runtime_error(RED + "Error opening file." + RESET);
 	}
 
-	std::string new_filename = filename;
 	std::string suffix = ".replace";
+	std::string new_filename = filename + suffix;
 
-	_output_file.open(new_filename.append(suffix).c_str());
+	_output_file.open(new_filename.c_str());
+
 	if (!_output_file.is_open()) 
     {
 		input_file.close();
