@@ -47,6 +47,5 @@ int	main(void)
 	std::cout << std::endl << GREEN << "----- Destructor calls -----" << RESET << std::endl;
 	
 	delete scavy4;
-	delete scavy5;
 	return (0);	
 }
