@@ -22,7 +22,7 @@ Dog::Dog(void) : Animal("Dog")
 
 Dog::Dog(const Dog& other) : Animal(other)
 {
-	*this = other;
+	this->_brain = new Brain(*other._brain);
 	std::cout << "Dog copy constructed!" << std::endl;
 	return ;
 }
@@ -38,7 +38,11 @@ Dog	&Dog::operator=(const Dog& other)
 {
 	if (this == &other)
 		return (*this);
-	_type = other._type;
+	Animal::operator=(other);
+	if (this->_brain != NULL)
+		delete this->_brain;
+	this->_brain = new Brain(*other._brain);
+	std::cout << "Dog assignment operator called!" << std::endl;
 	return (*this);
 }
 

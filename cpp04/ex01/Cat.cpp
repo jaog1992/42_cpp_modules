@@ -14,19 +14,21 @@
 
 Cat::Cat(void) : Animal("Cat")
 {
+	this->_brain = new Brain();
 	std::cout << "Cat constructed!" << std::endl;
 	return ;
 }
 
 Cat::Cat(const Cat& other) : Animal(other)
 {
-	*this = other;
+	this->_brain = new Brain(*other._brain);
 	std::cout << "Cat copy constructed!" << std::endl;
 	return ;
 }
 
 Cat::~Cat(void)
 {
+	delete this->_brain;
 	std::cout << "Cat destructed!" << std::endl;
 	return ;
 }
@@ -35,7 +37,11 @@ Cat	&Cat::operator=(const Cat& other)
 {
 	if (this == &other)
 		return (*this);
-	_type = other._type;
+	Animal::operator=(other);
+	if (this->_brain != NULL)
+		delete this->_brain;
+	this->_brain = new Brain(*other._brain);
+	std::cout << "Cat assignment operator called!" << std::endl;
 	return (*this);
 }
 

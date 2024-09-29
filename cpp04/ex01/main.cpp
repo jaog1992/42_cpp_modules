@@ -38,9 +38,9 @@ int	main(void)
 	delete copy_dog;
 	delete copy_cat;
 	/* These pointers now point to deallocated memory. 
-	   Let's assign them to nullptr to avoid undefined behavior if accessed again. */
-	copy_dog = nullptr;
-	copy_cat = nullptr;
+	   Let's assign them to null to avoid undefined behavior if accessed again. */
+	copy_dog = NULL;
+	copy_cat = NULL;
 
 	std::cout << std::endl << GREEN << "-------- Assign Operator (Shallow) --------" << RESET << std::endl << std::endl;
 	/* Assignment operator: This creates a shallow copy by reassigning the pointers to dog1 and cat1.

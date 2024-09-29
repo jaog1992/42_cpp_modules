@@ -15,19 +15,21 @@
 
 Dog::Dog(void) : AAnimal("Dog")
 {
+	this->_brain = new Brain();
 	std::cout << "Dog constructed!" << std::endl;
 	return ;
 }
 
 Dog::Dog(const Dog& other) : AAnimal(other)
 {
-	*this = other;
+	this->_brain = new Brain(*other._brain);
 	std::cout << "Dog copy constructed!" << std::endl;
 	return ;
 }
 
 Dog::~Dog(void)
 {
+	delete this->_brain;
 	std::cout << "Dog destructed!" << std::endl;
 	return ;
 }
@@ -36,7 +38,11 @@ Dog	&Dog::operator=(const Dog& other)
 {
 	if (this == &other)
 		return (*this);
-	_type = other._type;
+	AAnimal::operator=(other);
+	if (this->_brain != NULL)
+		delete this->_brain;
+	this->_brain = new Brain(*other._brain);
+	std::cout << "Dog assignment operator called!" << std::endl;
 	return (*this);
 }
 

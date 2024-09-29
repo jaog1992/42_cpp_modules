@@ -36,6 +36,8 @@ int	main(void)
 	std::cout << std::endl << GREEN << "-------- Delete Copies --------" << RESET << std::endl << std::endl;
 	delete copy_dog;
 	delete copy_cat;
+	copy_dog = NULL;
+	copy_cat = NULL;
 	
 	std::cout << std::endl << GREEN << "-------- Assign Operator (Shallow) --------" << RESET << std::endl << std::endl;
 	// assignation operator
