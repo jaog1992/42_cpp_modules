@@ -44,7 +44,6 @@ Fixed::~Fixed(void)
     return ;
 }
 
-/* We protect autoassignment*/
 Fixed &Fixed::operator=(const Fixed &other)
 {
     std::cout << "Copy assignment operator called" << std::endl;
@@ -54,8 +53,6 @@ Fixed &Fixed::operator=(const Fixed &other)
     return (*this);
 }
 
-
-// Comparison Operator overload
 bool Fixed::operator>(const Fixed &other) const
 {
 	return (_fixed > other.getRawBits());

@@ -13,7 +13,8 @@
 
 #include "Animal.hpp"
 
-Animal::Animal(void) : _type(""){
+Animal::Animal(void) : _type("")
+{
 	std::cout << "Default animal constructed!" << std::endl;
 	return ;
 }

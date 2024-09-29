@@ -21,6 +21,7 @@ const std::string GREEN = "\033[32m";
 int	main(void)
 {
 	std::cout << std::endl << GREEN << "Creating Animal class:" << RESET << std::endl << std::endl;
+	/* You can only call methods that are declared as const. These objects are inmutable! */
 	const	Animal* meta = new Animal();
 	const	Animal* dog1 = new Dog();
 	const	Animal* cat1 = new Cat();
@@ -32,7 +33,7 @@ int	main(void)
 	dog1->makeSound(); //will output the dog sound!
 	meta->makeSound();
 
-	std::cout << std::endl << GREEN << "Cleaning Animal obdog1ects:" << RESET << std::endl << std::endl;
+	std::cout << std::endl << GREEN << "Cleaning Animal objects:" << RESET << std::endl << std::endl;
 	delete meta;
 	delete dog1;
 	delete cat1;
@@ -46,7 +47,7 @@ int	main(void)
 	cat2->makeSound(); //will output the wrong cat sound!
 	gama->makeSound();
 
-	std::cout << std::endl << GREEN << "Cleaning WrongAnimal obdog1ects:" << RESET << std::endl << std::endl;
+	std::cout << std::endl << GREEN << "Cleaning WrongAnimal objects:" << RESET << std::endl << std::endl;
 
 	delete cat2;
 	delete gama;

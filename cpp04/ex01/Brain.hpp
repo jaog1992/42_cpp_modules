@@ -18,7 +18,6 @@
 
 class Brain
 {
-
     public:
     	Brain(void);
     	Brain(const Brain &source);

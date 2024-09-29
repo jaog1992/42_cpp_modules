@@ -15,6 +15,7 @@
 
 Dog::Dog(void) : Animal("Dog")
 {
+	this->_brain = new Brain();
 	std::cout << "Dog constructed!" << std::endl;
 	return ;
 }
@@ -28,6 +29,7 @@ Dog::Dog(const Dog& other) : Animal(other)
 
 Dog::~Dog(void)
 {
+	delete this->_brain;
 	std::cout << "Dog destructed!" << std::endl;
 	return ;
 }

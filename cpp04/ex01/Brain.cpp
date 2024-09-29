@@ -17,7 +17,7 @@ Brain::Brain(void)
 {
 	std::stringstream ss;
 	for (int i = 0; i < 100; i++)
-{
+	{
 		ss << i;
 		_ideas[i] = "Idea #" + ss.str();
 	}
