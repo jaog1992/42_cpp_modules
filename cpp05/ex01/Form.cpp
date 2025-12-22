@@ -26,14 +26,7 @@ class Bureaucrat;
 
 /* ---------------- CONSTRUCTORS & DESTRUCTOR ---------------- */
 
-/**
- * @brief Default constructor.
- * 
- * Initializes a Form with default parameters and logs the creation to stdout.
- */
-Form::Form( void ) : _name(), _signGrade(), _execGrade(), _signed(false) {
-	std::cout << GREEN << "Form default constructor called" << RESET << std::endl;
-}
+// Default constructor removed to avoid creating an invalid Form with grade 0
 
 /**
  * @brief Constructs a Form instance with custom initialization values.

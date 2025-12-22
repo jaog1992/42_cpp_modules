@@ -88,8 +88,8 @@ Bureaucrat & Bureaucrat::operator=( const Bureaucrat &otherBureaucrat ) {
  * @return std::ostream& Reference to the output stream.
  */
 std::ostream	&operator<<(std::ostream &os, const Bureaucrat &otherBureaucrat) {
-	os << otherBureaucrat.getName() << ": " << otherBureaucrat.getGrade() << ".";
-	return os;
+    os << otherBureaucrat.getName() << ", bureaucrat grade " << otherBureaucrat.getGrade() << ".";
+    return os;
 }
 
 

@@ -13,10 +13,10 @@
 /**
  * @file ShrubberyCreationForm.cpp
  * @author jde-orma
- * @brief Implementación de ShrubberyCreationForm
+ * @brief Implementation of ShrubberyCreationForm
  * @date 2025-10-10
  *
- * @details Crea un archivo <target>_shrubbery con arte ASCII de árboles.
+ * @details Creates a <target>_shrubbery file with ASCII tree art.
  */
 
 #include "ShrubberyCreationForm.hpp"

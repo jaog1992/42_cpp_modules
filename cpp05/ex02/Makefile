@@ -67,6 +67,7 @@ clean:
 # Clean executable and .o files
 fclean: clean
 	@$(RM) $(CODE_BIN)
+	@$(RM) *_shrubbery
 	@echo "$(GREEN)✔ $(BLUE)$(USER_NAME)'s $(NAME) executable file removal$(DEF_COLOR)"
 
 # Rebuild everything

@@ -13,7 +13,7 @@
 /**
  * @file PresidentialPardonForm.cpp
  * @author jde-orma
- * @brief Implementación de PresidentialPardonForm
+ * @brief Implementation of PresidentialPardonForm
  * @date 2025-10-10
  */
 

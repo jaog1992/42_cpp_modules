@@ -13,10 +13,10 @@
 /**
  * @file RobotomyRequestForm.hpp
  * @author jde-orma
- * @brief Declaración de la clase RobotomyRequestForm
+ * @brief Declaration of the RobotomyRequestForm class
  * @date 2025-10-10
  *
- * @details Clase concreta de formulario que simula una robotización del objetivo.
+ * @details Concrete form class that simulates robotomizing the target.
  */
 
 #ifndef ROBOTOMYREQUESTFORM_HPP

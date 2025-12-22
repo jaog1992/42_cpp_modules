@@ -13,10 +13,10 @@
 /**
  * @file RobotomyRequestForm.cpp
  * @author jde-orma
- * @brief Implementación de RobotomyRequestForm
+ * @brief Implementation of RobotomyRequestForm
  * @date 2025-10-10
  *
- * @details Ejecuta un procedimiento de robotización con éxito aleatorio del 50%.
+ * @details Performs a robotomy procedure with a 50% chance of success.
  */
 
 #include "RobotomyRequestForm.hpp"

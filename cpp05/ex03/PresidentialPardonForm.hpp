@@ -13,7 +13,7 @@
 /**
  * @file PresidentialPardonForm.hpp
  * @author jde-orma
- * @brief Declaración de la clase PresidentialPardonForm
+ * @brief Declaration of the PresidentialPardonForm class
  * @date 2025-10-10
  */
 

@@ -78,6 +78,7 @@ AForm* Intern::makeForm(const std::string &name, const std::string &target) {
             return formTypes[i](target);
         }
     }
+    std::cerr << YELLOW << "Intern couldn't create form: unknown form name '" << name << "'" << RESET << std::endl;
     return NULL;
 }
 

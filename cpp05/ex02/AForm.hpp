@@ -13,11 +13,11 @@
 /**
  * @file AForm.hpp
  * @author jde-orma
- * @brief Declaración de la clase abstracta AForm para la gestión de formularios.
+ * @brief Declaration of the abstract AForm class for form management.
  * @date 2025-10-10
  *
- * @details Clase base abstracta que maneja la firma y ejecución de formularios,
- *          verificando las restricciones de grado de los burócratas.
+ * @details Abstract base class that handles signing and execution of forms,
+ *          verifying bureaucrat grade restrictions.
  */
 
 #ifndef AFORM_H
@@ -32,9 +32,9 @@ class Bureaucrat;
 class AForm {
 private:
     const std::string _name;       ///< Nombre del formulario
-    const unsigned int _signGrade; ///< Grado requerido para firmar
-    const unsigned int _execGrade; ///< Grado requerido para ejecutar
-    bool _signed;                  ///< Estado de firmado
+    const unsigned int _signGrade; ///< Grade required to sign
+    const unsigned int _execGrade; ///< Grade required to execute
+    bool _signed;                  ///< Signed status
 
 protected:
     virtual void executeForm() const = 0; ///< Acción específica del formulario
@@ -56,7 +56,7 @@ public:
     void beSigned(const Bureaucrat &bureaucrat);
     virtual void execute(const Bureaucrat &executor) const;
 
-    // Excepciones
+    // Exceptions
     class GradeTooHighException : public std::exception {
         public:
             virtual const char* what() const throw() {

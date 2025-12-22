@@ -6,7 +6,7 @@
 /*   By: jde-orma <jde-orma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/10 21:04:04 by jde-orma          #+#    #+#             */
-/*   Updated: 2025/10/10 23:39:11 by jde-orma         ###   ########.fr       */
+/*   Updated: 2025/12/22 13:15:09 by jde-orma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,43 +58,43 @@ int main(void) {
     ShrubberyCreationForm notSignedForm("NotSigned");
 
     // Create bureaucrats
-    Bureaucrat peter = createBureaucrat("Peter", 75);
-    Bureaucrat perkins = createBureaucrat("Perkins", 15);
+    Bureaucrat ihartze = createBureaucrat("Ihartze", 75);
+    Bureaucrat natalia = createBureaucrat("Natalia", 15);
 
     std::cout << "\n💼 Signing forms...\n";
 
-    peter.signForm(importantForm);
-    peter.signForm(robotomyForm);
-    peter.signForm(shrubberyForm);
+    ihartze.signForm(importantForm);
+    ihartze.signForm(robotomyForm);
+    ihartze.signForm(shrubberyForm);
 
-    perkins.signForm(importantForm);
-    perkins.signForm(robotomyForm);
-    perkins.signForm(shrubberyForm);
+    natalia.signForm(importantForm);
+    natalia.signForm(robotomyForm);
+    natalia.signForm(shrubberyForm);
 
     std::cout << "\n⚡ Executing forms...\n";
 
-    tryExecute(importantForm, peter);     
-    tryExecute(importantForm, perkins);   
+    tryExecute(importantForm, ihartze);     
+    tryExecute(importantForm, natalia);   
 
-    tryExecute(robotomyForm, peter);      
-    tryExecute(robotomyForm, perkins);    
+    tryExecute(robotomyForm, ihartze);      
+    tryExecute(robotomyForm, natalia);    
 
-    tryExecute(shrubberyForm, peter);     
-    tryExecute(shrubberyForm, perkins);   
+    tryExecute(shrubberyForm, ihartze);     
+    tryExecute(shrubberyForm, natalia);   
 
     std::cout << "\n🚀 Using Bureaucrat executeForm helper...\n";
 
-    try { perkins.executeForm(shrubberyForm); } catch (const std::exception &e) { std::cerr << YELLOW << e.what() << RESET << std::endl; }
-    try { perkins.executeForm(robotomyForm); } catch (const std::exception &e) { std::cerr << YELLOW << e.what() << RESET << std::endl; }
-    try { perkins.executeForm(importantForm); } catch (const std::exception &e) { std::cerr << YELLOW << e.what() << RESET << std::endl; }
+    try { natalia.executeForm(shrubberyForm); } catch (const std::exception &e) { std::cerr << YELLOW << e.what() << RESET << std::endl; }
+    try { natalia.executeForm(robotomyForm); } catch (const std::exception &e) { std::cerr << YELLOW << e.what() << RESET << std::endl; }
+    try { natalia.executeForm(importantForm); } catch (const std::exception &e) { std::cerr << YELLOW << e.what() << RESET << std::endl; }
 
-    try { peter.executeForm(shrubberyForm); } catch (const std::exception &e) { std::cerr << YELLOW << e.what() << RESET << std::endl; }
-    try { peter.executeForm(robotomyForm); } catch (const std::exception &e) { std::cerr << YELLOW << e.what() << RESET << std::endl; }
-    try { peter.executeForm(importantForm); } catch (const std::exception &e) { std::cerr << YELLOW << e.what() << RESET << std::endl; }
+    try { ihartze.executeForm(shrubberyForm); } catch (const std::exception &e) { std::cerr << YELLOW << e.what() << RESET << std::endl; }
+    try { ihartze.executeForm(robotomyForm); } catch (const std::exception &e) { std::cerr << YELLOW << e.what() << RESET << std::endl; }
+    try { ihartze.executeForm(importantForm); } catch (const std::exception &e) { std::cerr << YELLOW << e.what() << RESET << std::endl; }
 
     std::cout << "\n❌ Attempt to execute not signed form...\n";
     try {
-        notSignedForm.execute(perkins);
+        notSignedForm.execute(natalia);
     } catch (const std::exception &e) {
         std::cerr << YELLOW << "⚠️  Form execution error: " << e.what() << RESET << std::endl;
     }

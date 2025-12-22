@@ -13,17 +13,17 @@
 /**
  * @file AForm.cpp
  * @author jde-orma
- * @brief Implementación de la clase AForm.
+ * @brief Implementation of the AForm class.
  * @date 2025-10-10
  *
- * @details Contiene la lógica para firmar y ejecutar formularios,
- *          incluyendo manejo de excepciones.
+ * @details Contains the logic for signing and executing forms,
+ *          including exception handling.
  */
 
 #include "AForm.hpp"
 #include <iostream>
 
-/* ------------ CONSTRUCTORES Y DESTRUCTOR ------------ */
+/* ------------ CONSTRUCTORS AND DESTRUCTOR ------------ */
 AForm::AForm(void) : _name(""), _signGrade(150), _execGrade(150), _signed(false) {}
 
 AForm::AForm(const std::string &name, unsigned int signGrade, unsigned int execGrade)
@@ -36,7 +36,7 @@ AForm::AForm(const AForm &other)
 
 AForm::~AForm(void) {}
 
-/* ------------ SOBRECARGA ------------ */
+/* ------------ OVERLOADS ------------ */
 AForm &AForm::operator=(const AForm &other) {
     if (this != &other)
         _signed = other._signed;
@@ -60,7 +60,7 @@ bool AForm::getSigned() const { return _signed; }
 /* ------------ SETTER ------------ */
 void AForm::setSigned(bool sign) { _signed = sign; }
 
-/* ------------ OTROS METODOS ------------ */
+/* ------------ OTHER METHODS ------------ */
 void AForm::beSigned(const Bureaucrat &bureaucrat) {
     if (bureaucrat.getGrade() <= _signGrade)
         _signed = true;

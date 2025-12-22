@@ -6,7 +6,7 @@
 /*   By: jde-orma <jde-orma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/10 21:04:04 by jde-orma          #+#    #+#             */
-/*   Updated: 2025/10/10 23:50:46 by jde-orma         ###   ########.fr       */
+/*   Updated: 2025/12/22 13:22:33 by jde-orma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,14 +41,14 @@ void internJob(const std::string &formName, const std::string &formTarget) {
     AForm *form = NULL;
 
     try {
-        Bureaucrat perkins("Perkins Perkinson", 1);
+        Bureaucrat ihartze("Ihartze Basterretxea", 1);
         form = intern.makeForm(formName, formTarget);
 
         if (form) {
             std::cout << "💼 Signing form..." << std::endl;
-            form->beSigned(perkins);
+            form->beSigned(ihartze);
             std::cout << "⚡ Executing form..." << std::endl;
-            form->execute(perkins);
+            form->execute(ihartze);
             delete form;
         } else {
             std::cout << YELLOW << "❌ Error: Form '" << formName << "' not recognized." << RESET << std::endl;
@@ -65,11 +65,17 @@ void internJob(const std::string &formName, const std::string &formTarget) {
 int main(void) {
     std::cout << "\n🚀 Intern Job Simulation\n" << std::endl;
 
-    internJob("Robotomy Request", "Anderson");
-    internJob("Presidential Pardon", "Peterson");
-    internJob("Shrubbery Creation", "Roberson");
-    internJob("Invent", "Invent");
 
+    internJob("Robotomy Request", "Gotzone");
+    std::cout << "\n" << std::endl;
+
+    internJob("Presidential Pardon", "Natalia");
+    std::cout << "\n" << std::endl;
+
+    internJob("Shrubbery Creation", "Sendoa");
+    std::cout << "\n" << std::endl;
+
+    internJob("Guggenheim_Urdaibai", "DFB");
     std::cout << "\n✅ All jobs attempted.\n" << std::endl;
 
     return 0;

@@ -53,7 +53,6 @@ class Form {
 	public:
 		/* ---------------- CONSTRUCTORS & DESTRUCTOR ---------------- */
 
-		Form( void );
 		Form( const std::string &name, const int signGrade, const int execGrade, bool isSigned = false );
 		Form( const Form &otherForm );
 		~Form( void );

@@ -13,10 +13,10 @@
 /**
  * @file ShrubberyCreationForm.hpp
  * @author jde-orma
- * @brief Declaración de la clase ShrubberyCreationForm
+ * @brief Declaration of the ShrubberyCreationForm class
  * @date 2025-10-10
  *
- * @details Clase concreta que genera un archivo ASCII de árboles para un objetivo dado.
+ * @details Concrete class that generates an ASCII tree file for a given target.
  */
 
 #ifndef SHRUBBERYCREATIONFORM_HPP
