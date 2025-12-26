@@ -6,7 +6,7 @@
 /*   By: jde-orma <jde-orma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/10 21:04:04 by jde-orma          #+#    #+#             */
-/*   Updated: 2025/10/10 22:27:50 by jde-orma         ###   ########.fr       */
+/*   Updated: 2025/12/26 18:14:35 by jde-orma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,16 +58,15 @@ void	tryDemote( Bureaucrat &employee ) {
  * @param grade The initial grade value.
  * @return Bureaucrat Either the successfully created Bureaucrat or a default instance if creation failed.
  */
-Bureaucrat makeBureaucrat( const std::string &name, int grade ) {
+Bureaucrat *makeBureaucrat( const std::string &name, int grade ) {
 	try {
-		Bureaucrat	tmp(name, grade);
-		return tmp;
+		return new Bureaucrat(name, grade);
 	} catch (const Bureaucrat::GradeTooHighException &e) {
 		std::cerr << RED << "❌ Error while creating Bureaucrat " << name << ": " << e.what() << RESET << std::endl;
 	} catch (const Bureaucrat::GradeTooLowException &e) {
 		std::cerr << RED << "❌ Error while creating Bureaucrat " << name << ": " << e.what() << RESET << std::endl;
 	}
-	return Bureaucrat();
+	return NULL;
 }
 
 /**
@@ -77,28 +76,40 @@ int	main( void ) {
     
     std::cout << MAGENTA << "\n--- Creating Bureaucrats ---\n" << RESET;
 	
-    Bureaucrat	ihartze = makeBureaucrat("Ihartze", 150);
-	Bureaucrat	natalia = makeBureaucrat("Natalia", 3);
-	Bureaucrat	elsa = makeBureaucrat("Elsa", 151);
-	Bureaucrat	onintza = makeBureaucrat("Onintza", 0);
+	Bureaucrat	*inazio = makeBureaucrat("Inazio", -150);
+	Bureaucrat	*ihartze = makeBureaucrat("Ihartze", 150);
+	Bureaucrat	*natalia = makeBureaucrat("Natalia", 3);
+	Bureaucrat	*elsa = makeBureaucrat("Elsa", 151);
+	Bureaucrat	*onintza = makeBureaucrat("Onintza", 0);
 
 	std::cout << MAGENTA << "\n--- Testing promotions and demotions ---\n" << RESET;
 
-	tryDemote(ihartze);
-	tryPromote(ihartze);
-	tryPromote(natalia);
-	tryPromote(natalia);
-	tryPromote(natalia);
-	tryDemote(natalia);
+	if (inazio) tryDemote(*inazio);
+	if (ihartze) tryDemote(*ihartze);
+	if (ihartze) tryPromote(*ihartze);
+	if (natalia) tryPromote(*natalia);
+	if (natalia) tryPromote(*natalia);
+	if (natalia) tryPromote(*natalia);
+	if (natalia) tryDemote(*natalia);
 
 	std::cout << MAGENTA << "\n--- Testing copy constructor and assignment ---\n" << RESET;
-	Bureaucrat copyOfNatalia(natalia);
-	std::cout << GREEN << "Copied Bureaucrat: " << BLUE << copyOfNatalia << RESET << std::endl;
+	if (natalia) {
+		Bureaucrat copyOfNatalia(*natalia);
+		std::cout << GREEN << "Copied Bureaucrat: " << BLUE << copyOfNatalia << RESET << std::endl;
+	}
 
-	Bureaucrat assigned = ihartze;
-	std::cout << GREEN << "Assigned Bureaucrat: " << BLUE << assigned << RESET << std::endl;
+	if (ihartze) {
+		Bureaucrat assigned = *ihartze;
+		std::cout << GREEN << "Assigned Bureaucrat: " << BLUE << assigned << RESET << std::endl;
+	}
 
 	std::cout << MAGENTA << "\n--- End of Tests ---\n" << RESET;
+
+	delete inazio;
+	delete ihartze;
+	delete natalia;
+	delete elsa;
+	delete onintza;
 
 	return (EXIT_SUCCESS);
 }

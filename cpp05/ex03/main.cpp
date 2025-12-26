@@ -6,7 +6,7 @@
 /*   By: jde-orma <jde-orma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/10 21:04:04 by jde-orma          #+#    #+#             */
-/*   Updated: 2025/12/22 13:22:33 by jde-orma         ###   ########.fr       */
+/*   Updated: 2025/12/22 15:50:09 by jde-orma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,6 @@ void internJob(const std::string &formName, const std::string &formTarget) {
 
 int main(void) {
     std::cout << "\n🚀 Intern Job Simulation\n" << std::endl;
-
 
     internJob("Robotomy Request", "Gotzone");
     std::cout << "\n" << std::endl;

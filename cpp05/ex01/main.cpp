@@ -23,16 +23,15 @@
 # define EXIT_SUCCESS 0
 # define EXIT_FAILURE 1
 
-Bureaucrat createBureaucrat( const std::string &name, int grade ) {
+Bureaucrat *createBureaucrat( const std::string &name, int grade ) {
 	try {
-		Bureaucrat	one(name, grade);
-		return one;
+		return new Bureaucrat(name, grade);
 	} catch (const Bureaucrat::GradeTooHighException &e) {
 		std::cerr << RED << "❌ Bureaucrat constructor error: " << e.what() << RESET << std::endl;
 	} catch (const Bureaucrat::GradeTooLowException &e) {
 		std::cerr << RED << "❌ Bureaucrat constructor error: " << e.what() << RESET << std::endl;
 	}
-	return Bureaucrat();
+	return NULL;
 }
 
 int	main( void ) {
@@ -42,19 +41,26 @@ int	main( void ) {
 	Form important("Important Form", 45, 10, false);
 	Form notImportant("Not Important Form", 100, 60, false);
 
-	Bureaucrat ihartze = createBureaucrat("Ihartze", 75);
-	Bureaucrat natalia = createBureaucrat("Natalia", 15);
+	Bureaucrat *ihartze = createBureaucrat("Ihartze", 75);
+	Bureaucrat *natalia = createBureaucrat("Natalia", 15);
 
 	std::cout << "\n" << BLUE << ">>> Trying with Ihartze (grade 75)" << RESET << std::endl;
-	ihartze.signForm(veryImportant);
-	ihartze.signForm(important);
-	ihartze.signForm(notImportant);
+	if (ihartze) {
+		ihartze->signForm(veryImportant);
+		ihartze->signForm(important);
+		ihartze->signForm(notImportant);
+	}
 
 	std::cout << "\n" << BLUE << ">>> Trying with Natalia (grade 15)" << RESET << std::endl;
-	natalia.signForm(veryImportant);
-	natalia.signForm(important);
-	natalia.signForm(notImportant);
+	if (natalia) {
+		natalia->signForm(veryImportant);
+		natalia->signForm(important);
+		natalia->signForm(notImportant);
+	}
 
 	std::cout << MAGENTA << "\n===== ✅ TESTS COMPLETED =====" << RESET << std::endl;
+	delete ihartze;
+	delete natalia;
+
 	return (EXIT_SUCCESS);
 }

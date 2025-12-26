@@ -38,16 +38,15 @@ void tryExecute(AForm &form, Bureaucrat &executor) {
 }
 
 // Create Bureaucrat safely with grade check
-Bureaucrat createBureaucrat(const std::string &name, int grade) {
+Bureaucrat *createBureaucrat(const std::string &name, int grade) {
     try {
-        Bureaucrat b(name, grade);
-        return b;
+        return new Bureaucrat(name, grade);
     } catch (const Bureaucrat::GradeTooHighException &e) {
         std::cerr << YELLOW << "⚠️  Bureaucrat constructor error: " << e.what() << RESET << std::endl;
     } catch (const Bureaucrat::GradeTooLowException &e) {
         std::cerr << YELLOW << "⚠️  Bureaucrat constructor error: " << e.what() << RESET << std::endl;
     }
-    return Bureaucrat();
+    return NULL;
 }
 
 int main(void) {
@@ -58,46 +57,55 @@ int main(void) {
     ShrubberyCreationForm notSignedForm("NotSigned");
 
     // Create bureaucrats
-    Bureaucrat ihartze = createBureaucrat("Ihartze", 75);
-    Bureaucrat natalia = createBureaucrat("Natalia", 15);
+    Bureaucrat *ihartze = createBureaucrat("Ihartze", 75);
+    Bureaucrat *natalia = createBureaucrat("Natalia", 15);
 
     std::cout << "\n💼 Signing forms...\n";
 
-    ihartze.signForm(importantForm);
-    ihartze.signForm(robotomyForm);
-    ihartze.signForm(shrubberyForm);
+    if (ihartze) {
+        ihartze->signForm(importantForm);
+        ihartze->signForm(robotomyForm);
+        ihartze->signForm(shrubberyForm);
+    }
 
-    natalia.signForm(importantForm);
-    natalia.signForm(robotomyForm);
-    natalia.signForm(shrubberyForm);
+    if (natalia) {
+        natalia->signForm(importantForm);
+        natalia->signForm(robotomyForm);
+        natalia->signForm(shrubberyForm);
+    }
 
     std::cout << "\n⚡ Executing forms...\n";
 
-    tryExecute(importantForm, ihartze);     
-    tryExecute(importantForm, natalia);   
+    if (ihartze) tryExecute(importantForm, *ihartze);     
+    if (natalia) tryExecute(importantForm, *natalia);   
 
-    tryExecute(robotomyForm, ihartze);      
-    tryExecute(robotomyForm, natalia);    
+    if (ihartze) tryExecute(robotomyForm, *ihartze);      
+    if (natalia) tryExecute(robotomyForm, *natalia);    
 
-    tryExecute(shrubberyForm, ihartze);     
-    tryExecute(shrubberyForm, natalia);   
+    if (ihartze) tryExecute(shrubberyForm, *ihartze);     
+    if (natalia) tryExecute(shrubberyForm, *natalia);   
 
     std::cout << "\n🚀 Using Bureaucrat executeForm helper...\n";
 
-    try { natalia.executeForm(shrubberyForm); } catch (const std::exception &e) { std::cerr << YELLOW << e.what() << RESET << std::endl; }
-    try { natalia.executeForm(robotomyForm); } catch (const std::exception &e) { std::cerr << YELLOW << e.what() << RESET << std::endl; }
-    try { natalia.executeForm(importantForm); } catch (const std::exception &e) { std::cerr << YELLOW << e.what() << RESET << std::endl; }
+    if (natalia) { try { natalia->executeForm(shrubberyForm); } catch (const std::exception &e) { std::cerr << YELLOW << e.what() << RESET << std::endl; } }
+    if (natalia) { try { natalia->executeForm(robotomyForm); } catch (const std::exception &e) { std::cerr << YELLOW << e.what() << RESET << std::endl; } }
+    if (natalia) { try { natalia->executeForm(importantForm); } catch (const std::exception &e) { std::cerr << YELLOW << e.what() << RESET << std::endl; } }
 
-    try { ihartze.executeForm(shrubberyForm); } catch (const std::exception &e) { std::cerr << YELLOW << e.what() << RESET << std::endl; }
-    try { ihartze.executeForm(robotomyForm); } catch (const std::exception &e) { std::cerr << YELLOW << e.what() << RESET << std::endl; }
-    try { ihartze.executeForm(importantForm); } catch (const std::exception &e) { std::cerr << YELLOW << e.what() << RESET << std::endl; }
+    if (ihartze) { try { ihartze->executeForm(shrubberyForm); } catch (const std::exception &e) { std::cerr << YELLOW << e.what() << RESET << std::endl; } }
+    if (ihartze) { try { ihartze->executeForm(robotomyForm); } catch (const std::exception &e) { std::cerr << YELLOW << e.what() << RESET << std::endl; } }
+    if (ihartze) { try { ihartze->executeForm(importantForm); } catch (const std::exception &e) { std::cerr << YELLOW << e.what() << RESET << std::endl; } }
 
     std::cout << "\n❌ Attempt to execute not signed form...\n";
-    try {
-        notSignedForm.execute(natalia);
-    } catch (const std::exception &e) {
-        std::cerr << YELLOW << "⚠️  Form execution error: " << e.what() << RESET << std::endl;
+    if (natalia) {
+        try {
+            notSignedForm.execute(*natalia);
+        } catch (const std::exception &e) {
+            std::cerr << YELLOW << "⚠️  Form execution error: " << e.what() << RESET << std::endl;
+        }
     }
+
+    delete ihartze;
+    delete natalia;
 
     return 0;
 }
