@@ -6,7 +6,7 @@
 /*   By: jde-orma <jde-orma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/10 23:43:23 by jde-orma          #+#    #+#             */
-/*   Updated: 2025/10/10 23:43:26 by jde-orma         ###   ########.fr       */
+/*   Updated: 2025/12/28 14:19:34 by jde-orma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,9 @@
 # include <string>
 # include <locale>
 
+#define TOLOWER  0
+#define TOUPPER   1
+
 class Intern {
 public:
     Intern(void);
@@ -55,7 +58,7 @@ private:
      * @param type "upper" or "lower"
      * @return std::string Transformed string
      */
-    std::string transformCase(const std::string &str, const std::string &type);
+    std::string transformCase(const std::string &str, const int &type);
 };
 
 #endif

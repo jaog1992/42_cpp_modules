@@ -6,7 +6,7 @@
 /*   By: jde-orma <jde-orma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/10 23:20:04 by jde-orma          #+#    #+#             */
-/*   Updated: 2025/12/28 12:44:10 by jde-orma         ###   ########.fr       */
+/*   Updated: 2025/12/28 13:53:51 by jde-orma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,20 @@ const unsigned int PresidentialPardonForm::_signGrade = 25;
 const unsigned int PresidentialPardonForm::_execGrade = 5;
 
 PresidentialPardonForm::PresidentialPardonForm(void) 
-    : AForm("Default Presidential", _signGrade, _execGrade), _target("") {}
+    : AForm("Default Presidential", _signGrade, _execGrade), _target("") 
+    {
+}
 
 PresidentialPardonForm::PresidentialPardonForm(const std::string &target) 
-    : AForm("Presidential Pardon", _signGrade, _execGrade), _target(target) {}
+    : AForm("Presidential Pardon", _signGrade, _execGrade), _target(target) 
+    {
+}
 
 PresidentialPardonForm::PresidentialPardonForm(const PresidentialPardonForm &other)
-    : AForm(other), _target(other._target) { *this = other; }
+    : AForm(other), _target(other._target) 
+    {
+    *this = other;
+}
 
 PresidentialPardonForm &PresidentialPardonForm::operator=(const PresidentialPardonForm &other) {
     if (this != &other)
@@ -38,9 +45,12 @@ PresidentialPardonForm &PresidentialPardonForm::operator=(const PresidentialPard
     return *this;
 }
 
-PresidentialPardonForm::~PresidentialPardonForm(void) {}
+PresidentialPardonForm::~PresidentialPardonForm(void) {
+}
 
-const std::string &PresidentialPardonForm::getTarget() const { return _target; }
+const std::string &PresidentialPardonForm::getTarget() const { 
+    return _target;
+}
 
 void PresidentialPardonForm::executeForm() const {
     std::cout << "✅ " << BLUE << _target << GREEN << " has been pardoned by " << BLUE << "Zaphod Beeblebrox" << RESET << "." << std::endl;

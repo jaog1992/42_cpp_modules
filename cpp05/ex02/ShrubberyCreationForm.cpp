@@ -6,7 +6,7 @@
 /*   By: jde-orma <jde-orma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/10 23:22:21 by jde-orma          #+#    #+#             */
-/*   Updated: 2025/10/10 23:34:04 by jde-orma         ###   ########.fr       */
+/*   Updated: 2025/12/28 13:55:26 by jde-orma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,17 @@ const unsigned int ShrubberyCreationForm::_signGrade = 145;
 const unsigned int ShrubberyCreationForm::_execGrade = 137;
 
 ShrubberyCreationForm::ShrubberyCreationForm(void) 
-    : AForm("Default Shrubbery", _signGrade, _execGrade), _target("") {}
+    : AForm("Default Shrubbery", _signGrade, _execGrade), _target("") {
+}
 
 ShrubberyCreationForm::ShrubberyCreationForm(const std::string &target) 
-    : AForm("Shrubbery Creation", _signGrade, _execGrade), _target(target) {}
+    : AForm("Shrubbery Creation", _signGrade, _execGrade), _target(target) {
+}
 
 ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm &other)
-    : AForm(other), _target(other._target) { *this = other; }
+    : AForm(other), _target(other._target) { 
+    *this = other;
+}
 
 ShrubberyCreationForm &ShrubberyCreationForm::operator=(const ShrubberyCreationForm &other) {
     if (this != &other)
@@ -41,9 +45,12 @@ ShrubberyCreationForm &ShrubberyCreationForm::operator=(const ShrubberyCreationF
     return *this;
 }
 
-ShrubberyCreationForm::~ShrubberyCreationForm(void) {}
+ShrubberyCreationForm::~ShrubberyCreationForm(void) {
+}
 
-const std::string &ShrubberyCreationForm::getTarget() const { return _target; }
+const std::string &ShrubberyCreationForm::getTarget() const { 
+    return _target;
+}
 
 void ShrubberyCreationForm::executeForm() const {
     std::ofstream ofs((_target + "_shrubbery").c_str());

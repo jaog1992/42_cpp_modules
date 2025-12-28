@@ -6,7 +6,7 @@
 /*   By: jde-orma <jde-orma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/10 23:21:03 by jde-orma          #+#    #+#             */
-/*   Updated: 2025/12/28 12:43:18 by jde-orma         ###   ########.fr       */
+/*   Updated: 2025/12/28 13:54:36 by jde-orma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,17 @@ const unsigned int RobotomyRequestForm::_signGrade = 72;
 const unsigned int RobotomyRequestForm::_execGrade = 45;
 
 RobotomyRequestForm::RobotomyRequestForm(void) 
-    : AForm("Default Robotomy", _signGrade, _execGrade), _target("") {}
+    : AForm("Default Robotomy", _signGrade, _execGrade), _target("") {
+}
 
 RobotomyRequestForm::RobotomyRequestForm(const std::string &target) 
-    : AForm("Robotomy Request", _signGrade, _execGrade), _target(target) {}
+    : AForm("Robotomy Request", _signGrade, _execGrade), _target(target) {
+}
 
 RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm &other)
-    : AForm(other), _target(other._target) { *this = other; }
+    : AForm(other), _target(other._target) {
+    *this = other;
+}
 
 RobotomyRequestForm &RobotomyRequestForm::operator=(const RobotomyRequestForm &other) {
     if (this != &other)
@@ -41,9 +45,12 @@ RobotomyRequestForm &RobotomyRequestForm::operator=(const RobotomyRequestForm &o
     return *this;
 }
 
-RobotomyRequestForm::~RobotomyRequestForm(void) {}
+RobotomyRequestForm::~RobotomyRequestForm(void) {
+}
 
-const std::string &RobotomyRequestForm::getTarget() const { return _target; }
+const std::string &RobotomyRequestForm::getTarget() const {
+    return _target;
+}
 
 void RobotomyRequestForm::executeForm() const {
     std::cout << "* Bzzzz... Drill noises *" << std::endl;

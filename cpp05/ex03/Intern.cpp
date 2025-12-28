@@ -6,7 +6,7 @@
 /*   By: jde-orma <jde-orma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/10 23:43:48 by jde-orma          #+#    #+#             */
-/*   Updated: 2025/10/10 23:51:21 by jde-orma         ###   ########.fr       */
+/*   Updated: 2025/12/28 14:20:06 by jde-orma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,25 +73,25 @@ AForm* Intern::makeForm(const std::string &name, const std::string &target) {
     };
 
     for (int i = 0; i < 3; i++) {
-        if (forms[i] == transformCase(name, "lower")) {
+        if (forms[i] == transformCase(name, TOLOWER)) {
             std::cout << BLUE << "Intern creates " << forms[i] << RESET << std::endl;
             return formTypes[i](target);
         }
     }
-    std::cerr << YELLOW << "Intern couldn't create form: unknown form name '" << name << "'" << RESET << std::endl;
+    std::cerr << YELLOW << "Intern couldn't create form: unknown form name '" << BLUE << name << "'" << RESET << std::endl;
     return NULL;
 }
 
 /* ---------------- STRING UTILITY ---------------- */
 
-std::string Intern::transformCase(const std::string &str, const std::string &type) {
+std::string Intern::transformCase(const std::string &str, const int &type) {
     std::string dst;
     std::locale loc;
 
-    if (type == "upper") {
+    if (type == TOUPPER) {
         for (std::size_t i = 0; i < str.length(); ++i)
             dst += std::toupper(str[i], loc);
-    } else if (type == "lower") {
+    } else if (type == TOLOWER) {
         for (std::size_t i = 0; i < str.length(); ++i)
             dst += std::tolower(str[i], loc);
     } else {

@@ -6,7 +6,7 @@
 /*   By: jde-orma <jde-orma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/10 21:04:04 by jde-orma          #+#    #+#             */
-/*   Updated: 2025/12/22 15:50:09 by jde-orma         ###   ########.fr       */
+/*   Updated: 2025/12/28 14:17:40 by jde-orma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ int main(void) {
     internJob("Shrubbery Creation", "Sendoa");
     std::cout << "\n" << std::endl;
 
-    internJob("Guggenheim_Urdaibai", "DFB");
+    internJob("Guggenheim Urdaibai", "DFB");
     std::cout << "\n✅ All jobs attempted.\n" << std::endl;
 
     return 0;
