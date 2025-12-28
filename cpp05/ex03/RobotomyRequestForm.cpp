@@ -6,7 +6,7 @@
 /*   By: jde-orma <jde-orma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/10 23:21:03 by jde-orma          #+#    #+#             */
-/*   Updated: 2025/10/10 23:21:05 by jde-orma         ###   ########.fr       */
+/*   Updated: 2025/12/28 12:43:18 by jde-orma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ const std::string &RobotomyRequestForm::getTarget() const { return _target; }
 void RobotomyRequestForm::executeForm() const {
     std::cout << "* Bzzzz... Drill noises *" << std::endl;
     if (rand() % 2)
-        std::cout << _target << " has been robotomized successfully." << std::endl;
+        std::cout << "✅ " << BLUE << _target << GREEN << " has been robotomized successfully." << RESET << std::endl;
     else
-        std::cout << _target << " robotomy failed." << std::endl;
+        std::cout << "❌ " << BLUE << _target << RED << " robotomy failed." << RESET << std::endl;
 }

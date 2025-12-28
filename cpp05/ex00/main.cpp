@@ -6,7 +6,7 @@
 /*   By: jde-orma <jde-orma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/10 21:04:04 by jde-orma          #+#    #+#             */
-/*   Updated: 2025/12/26 18:14:35 by jde-orma         ###   ########.fr       */
+/*   Updated: 2025/12/28 12:15:05 by jde-orma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	tryPromote( Bureaucrat &employee ) {
 		employee.incrementGrade();
 		std::cout << BLUE << employee << RESET << std::endl;
 	} catch(const Bureaucrat::GradeTooHighException &e) {
-		std::cerr << YELLOW << "⚠️ Bureaucrat promotion failed for " << employee.getName() << ": " << e.what() << RESET << std::endl;
+		std::cerr << YELLOW << "⚠️ Bureaucrat promotion failed for " << BLUE << employee.getName() << YELLOW << ": " << e.what() << RESET << std::endl;
 	}
 }
 
@@ -47,7 +47,7 @@ void	tryDemote( Bureaucrat &employee ) {
 		employee.decrementGrade();
 		std::cout << BLUE << employee << RESET << std::endl;
 	} catch(const Bureaucrat::GradeTooLowException &e) {
-		std::cerr << YELLOW << "⚠️ Bureaucrat demotion failed for " << employee.getName() << ": " << e.what() << RESET << std::endl;
+		std::cerr << YELLOW << "⚠️ Bureaucrat demotion failed for " << BLUE << employee.getName() << YELLOW << ": " << e.what() << RESET << std::endl;
 	}
 }
 
@@ -62,9 +62,9 @@ Bureaucrat *makeBureaucrat( const std::string &name, int grade ) {
 	try {
 		return new Bureaucrat(name, grade);
 	} catch (const Bureaucrat::GradeTooHighException &e) {
-		std::cerr << RED << "❌ Error while creating Bureaucrat " << name << ": " << e.what() << RESET << std::endl;
+		std::cerr << RED << "❌ Error while creating Bureaucrat " << BLUE << name << RED << ": " << e.what() << RESET << std::endl;
 	} catch (const Bureaucrat::GradeTooLowException &e) {
-		std::cerr << RED << "❌ Error while creating Bureaucrat " << name << ": " << e.what() << RESET << std::endl;
+		std::cerr << RED << "❌ Error while creating Bureaucrat " << BLUE << name << RED << ": " << e.what() << RESET << std::endl;
 	}
 	return NULL;
 }
@@ -91,6 +91,8 @@ int	main( void ) {
 	if (natalia) tryPromote(*natalia);
 	if (natalia) tryPromote(*natalia);
 	if (natalia) tryDemote(*natalia);
+	if (elsa) tryDemote(*elsa);
+	if (elsa) tryPromote(*elsa);
 
 	std::cout << MAGENTA << "\n--- Testing copy constructor and assignment ---\n" << RESET;
 	if (natalia) {

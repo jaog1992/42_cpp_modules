@@ -60,7 +60,7 @@ Bureaucrat::Bureaucrat( const Bureaucrat &otherBureaucrat )
  * @brief Destructor for the Bureaucrat class.
  */
 Bureaucrat::~Bureaucrat( void ) {
-	std::cout << RED << "Bureaucrat destructor called" << RESET << std::endl;
+	std::cout << RED << "Bureaucrat destructor called for " << BLUE << _name << RESET << std::endl;
 }
 
 

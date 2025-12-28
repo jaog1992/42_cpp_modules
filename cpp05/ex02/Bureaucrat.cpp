@@ -61,7 +61,7 @@ Bureaucrat::Bureaucrat( const Bureaucrat &otherBureaucrat )
  * @brief Destructor for the Bureaucrat class.
  */
 Bureaucrat::~Bureaucrat( void ) {
-	std::cout << RED << "Bureaucrat destructor called" << RESET << std::endl;
+	std::cout << RED << "Bureaucrat destructor called for " << BLUE << _name << RESET << std::endl;
 }
 
 
@@ -167,19 +167,19 @@ bool	Bureaucrat::checkGrade( unsigned int grade ) const {
 void Bureaucrat::signForm(AForm &form) {
     try {
         form.beSigned(*this);
-        std::cout << GREEN << _name << " signed the " << form.getName() << " ✅" << RESET << std::endl;
+		std::cout << "✅ " << BLUE << _name << GREEN << " signed the " << MAGENTA << form.getName() << RESET << std::endl;
     } catch (const std::exception &e) {
-        std::cerr << YELLOW << _name << " couldn’t sign the " << form.getName()
-                  << " ⚠️ : " << e.what() << RESET << std::endl;
+		std::cerr << "⚠️  " << BLUE << _name << YELLOW <<" couldn’t sign the " << MAGENTA << form.getName() << YELLOW 
+		          << ": " << e.what() << RESET << std::endl;
     }
 }
 
 void Bureaucrat::executeForm(AForm &form) const {
     try {
         form.execute(*this);
-        std::cout << GREEN << _name << " executed the " << form.getName() << " 🚀" << RESET << std::endl;
+		std::cout << "✅ " << BLUE << _name << GREEN << " executed the " << MAGENTA << form.getName() << RESET << std::endl;
     } catch (const std::exception &e) {
-        std::cerr << YELLOW << _name << " couldn’t execute the " << form.getName()
-                  << " ⚠️ : " << e.what() << RESET << std::endl;
+		std::cerr << "⚠️  " << BLUE << _name << YELLOW <<" couldn’t execute the " << MAGENTA << form.getName() << YELLOW 
+		    << ": " << e.what() << RESET << std::endl;
     }
 }

@@ -6,7 +6,7 @@
 /*   By: jde-orma <jde-orma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/10 22:41:51 by jde-orma          #+#    #+#             */
-/*   Updated: 2025/10/10 22:58:46 by jde-orma         ###   ########.fr       */
+/*   Updated: 2025/12/28 12:29:47 by jde-orma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ Form::Form( const Form &otherForm )
  * Cleans up the Form instance and outputs a message to the console.
  */
 Form::~Form( void ) {
-	std::cout << RED << "Form destructor called" << RESET << std::endl;
+	std::cout << RED << "Form " << BLUE << _name << RED << " destructor called" << RESET << std::endl;
 }
 
 

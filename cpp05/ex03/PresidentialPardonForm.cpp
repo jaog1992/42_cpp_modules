@@ -6,7 +6,7 @@
 /*   By: jde-orma <jde-orma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/10 23:20:04 by jde-orma          #+#    #+#             */
-/*   Updated: 2025/10/10 23:24:09 by jde-orma         ###   ########.fr       */
+/*   Updated: 2025/12/28 12:44:10 by jde-orma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,5 +43,5 @@ PresidentialPardonForm::~PresidentialPardonForm(void) {}
 const std::string &PresidentialPardonForm::getTarget() const { return _target; }
 
 void PresidentialPardonForm::executeForm() const {
-    std::cout << BLUE << _target << GREEN << " has been pardoned by " << BLUE << "Zaphod Beeblebrox" << RESET << "." << std::endl;
+    std::cout << "✅ " << BLUE << _target << GREEN << " has been pardoned by " << BLUE << "Zaphod Beeblebrox" << RESET << "." << std::endl;
 }

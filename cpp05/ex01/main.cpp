@@ -6,7 +6,7 @@
 /*   By: jde-orma <jde-orma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/10 21:04:04 by jde-orma          #+#    #+#             */
-/*   Updated: 2025/10/10 22:40:26 by jde-orma         ###   ########.fr       */
+/*   Updated: 2025/12/28 12:27:30 by jde-orma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,14 +44,14 @@ int	main( void ) {
 	Bureaucrat *ihartze = createBureaucrat("Ihartze", 75);
 	Bureaucrat *natalia = createBureaucrat("Natalia", 15);
 
-	std::cout << "\n" << BLUE << ">>> Trying with Ihartze (grade 75)" << RESET << std::endl;
+	std::cout << "\n" << ">>> Trying with Ihartze (grade 75)" << std::endl;
 	if (ihartze) {
 		ihartze->signForm(veryImportant);
 		ihartze->signForm(important);
 		ihartze->signForm(notImportant);
 	}
 
-	std::cout << "\n" << BLUE << ">>> Trying with Natalia (grade 15)" << RESET << std::endl;
+	std::cout << "\n" << ">>> Trying with Natalia (grade 15)" << std::endl;
 	if (natalia) {
 		natalia->signForm(veryImportant);
 		natalia->signForm(important);

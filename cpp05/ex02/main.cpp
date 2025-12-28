@@ -6,7 +6,7 @@
 /*   By: jde-orma <jde-orma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/10 21:04:04 by jde-orma          #+#    #+#             */
-/*   Updated: 2025/12/22 13:15:09 by jde-orma         ###   ########.fr       */
+/*   Updated: 2025/12/28 12:54:23 by jde-orma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@
 void tryExecute(AForm &form, Bureaucrat &executor) {
     try {
         form.execute(executor);
-        std::cout << GREEN << executor.getName() << " executed " << form.getName() << " ✅" << RESET << std::endl;
+        std::cout << "✅ " << BLUE << executor.getName() << GREEN << " executed " << MAGENTA << form.getName() << RESET << std::endl;
     } catch (const std::exception &e) {
         std::cerr << YELLOW << "⚠️  Form execution error: " << e.what() << RESET << std::endl;
     }
@@ -42,9 +42,9 @@ Bureaucrat *createBureaucrat(const std::string &name, int grade) {
     try {
         return new Bureaucrat(name, grade);
     } catch (const Bureaucrat::GradeTooHighException &e) {
-        std::cerr << YELLOW << "⚠️  Bureaucrat constructor error: " << e.what() << RESET << std::endl;
+        std::cerr << YELLOW << "⚠️  Bureaucrat " << BLUE << name << YELLOW << "constructor error: " << e.what() << RESET << std::endl;
     } catch (const Bureaucrat::GradeTooLowException &e) {
-        std::cerr << YELLOW << "⚠️  Bureaucrat constructor error: " << e.what() << RESET << std::endl;
+        std::cerr << YELLOW << "⚠️  Bureaucrat " << BLUE << name << YELLOW << "constructor error: " << e.what() << RESET << std::endl;
     }
     return NULL;
 }
@@ -62,12 +62,19 @@ int main(void) {
 
     std::cout << "\n💼 Signing forms...\n";
 
+    std::cout << MAGENTA << "   PresidentialPardonForm" << RESET << " sign grade < " << BLUE << "25" << RESET << std::endl;
+    std::cout << MAGENTA << "   RobotomyRequestForm   " << RESET << " sign grade < " << BLUE << "72" << RESET << std::endl;
+    std::cout << MAGENTA << "   ShrubberyCreationForm " << RESET << " sign grade < " << BLUE << "145" << RESET << std::endl;
+    std::cout << "\n";
+
     if (ihartze) {
         ihartze->signForm(importantForm);
         ihartze->signForm(robotomyForm);
         ihartze->signForm(shrubberyForm);
     }
 
+    std::cout << "\n";
+    
     if (natalia) {
         natalia->signForm(importantForm);
         natalia->signForm(robotomyForm);
@@ -75,6 +82,11 @@ int main(void) {
     }
 
     std::cout << "\n⚡ Executing forms...\n";
+
+    std::cout << MAGENTA << "   PresidentialPardonForm" << RESET << " exec grade < " << BLUE << "5" << RESET << std::endl;
+    std::cout << MAGENTA << "   RobotomyRequestForm   " << RESET << " exec grade < " << BLUE << "45" << RESET << std::endl;
+    std::cout << MAGENTA << "   ShrubberyCreationForm " << RESET << " exec grade < " << BLUE << "137" << RESET << std::endl;
+    std::cout << "\n";
 
     if (ihartze) tryExecute(importantForm, *ihartze);     
     if (natalia) tryExecute(importantForm, *natalia);   
