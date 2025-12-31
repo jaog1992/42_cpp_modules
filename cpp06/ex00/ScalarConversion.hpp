@@ -6,7 +6,7 @@
 /*   By: jde-orma <jde-orma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/22 15:17:56 by jde-orma          #+#    #+#             */
-/*   Updated: 2025/12/22 15:39:47 by jde-orma         ###   ########.fr       */
+/*   Updated: 2025/12/31 11:52:04 by jde-orma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,21 @@
 # include <iomanip>
 class ScalarConversion {
 	private:
+		/**
+		 * @brief Private default constructor to prevent instantiation.
+		 */
 		ScalarConversion(void);
+		/**
+		 * @brief Private copy constructor.
+		 */
 		ScalarConversion(const ScalarConversion &oneScalarConversion);
+		/**
+		 * @brief Private assignment operator.
+		 */
 		ScalarConversion &operator=(const ScalarConversion &oneScalarConversion);
+		/**
+		 * @brief Private destructor.
+		 */
 		~ScalarConversion(void);
 
 		/**

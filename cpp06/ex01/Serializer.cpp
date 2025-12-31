@@ -6,7 +6,7 @@
 /*   By: jde-orma <jde-orma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/22 15:17:19 by jde-orma          #+#    #+#             */
-/*   Updated: 2025/12/22 15:50:24 by jde-orma         ###   ########.fr       */
+/*   Updated: 2025/12/31 11:52:03 by jde-orma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,9 +71,23 @@ Serializer & Serializer::operator=( const Serializer &otherSerialize ) {
 
 
 uintptr_t	Serializer::serialize( Data *ptr ) {
+	/**
+	 * @brief Serialize a Data* pointer to an integer representation.
+	 *
+	 * Uses reinterpret_cast to convert the pointer to an integer type capable
+	 * of holding pointer values (`uintptr_t`). This is purely a bitwise
+	 * representation and not a deep serialization.
+	 */
 	return (reinterpret_cast<uintptr_t>(ptr));
 }
 
 Data * Serializer::deserialize( uintptr_t raw ) {
+	/**
+	 * @brief Deserialize an integer back into a Data* pointer.
+	 *
+	 * Performs the inverse reinterpret_cast of `serialize()` to restore the
+	 * pointer value. The resulting pointer should only be used if the original
+	 * object still exists at the same address.
+	 */
 	return (reinterpret_cast<Data *>(raw));
 }

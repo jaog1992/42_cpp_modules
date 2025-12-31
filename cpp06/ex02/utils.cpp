@@ -6,7 +6,7 @@
 /*   By: jde-orma <jde-orma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/22 15:19:55 by jde-orma          #+#    #+#             */
-/*   Updated: 2025/12/22 16:22:16 by jde-orma         ###   ########.fr       */
+/*   Updated: 2025/12/31 11:52:14 by jde-orma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,3 +70,12 @@ Base * generate( void ) {
 		default: return NULL;
 	}
 }
+
+/**
+ * @brief Randomly generate an instance of a derived class.
+ *
+ * This helper returns a freshly allocated object of type A, B or C chosen at
+ * random. The caller is responsible for deleting the returned object.
+ *
+ * @return Base* Pointer to newly created object (A/B/C).
+ */
