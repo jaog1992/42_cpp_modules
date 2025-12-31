@@ -6,7 +6,7 @@
 /*   By: jde-orma <jde-orma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/22 15:19:25 by jde-orma          #+#    #+#             */
-/*   Updated: 2025/12/22 15:40:48 by jde-orma         ###   ########.fr       */
+/*   Updated: 2025/12/31 16:19:03 by jde-orma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,8 @@
 # include "Base.hpp"
 
 /**
- * @brief Class C, derived from Base.
- */
-class C : public Base {};
-
-/**
  * @brief C is another empty derivative used for identification.
  */
+class C : public Base {};
 
 #endif
