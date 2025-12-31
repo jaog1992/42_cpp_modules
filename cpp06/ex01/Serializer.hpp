@@ -6,7 +6,7 @@
 /*   By: jde-orma <jde-orma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/22 15:18:39 by jde-orma          #+#    #+#             */
-/*   Updated: 2025/12/31 11:52:06 by jde-orma         ###   ########.fr       */
+/*   Updated: 2025/12/31 15:55:03 by jde-orma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,21 +22,10 @@
 
 class Serializer {
 	private:
-		/**
-		 * @brief Private default constructor to prevent instantiation.
-		 */
+
 		Serializer( void );
-		/**
-		 * @brief Private copy constructor.
-		 */
 		Serializer( const Serializer &otherSerialize );
-		/**
-		 * @brief Private assignment operator.
-		 */
 		Serializer & operator=( const Serializer &otherSerialize );
-		/**
-		 * @brief Private destructor.
-		 */
 		~Serializer( void );
 
 	public:

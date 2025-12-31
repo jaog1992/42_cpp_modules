@@ -6,27 +6,20 @@
 /*   By: jde-orma <jde-orma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/22 15:17:19 by jde-orma          #+#    #+#             */
-/*   Updated: 2025/12/31 11:52:03 by jde-orma         ###   ########.fr       */
+/*   Updated: 2025/12/31 15:57:22 by jde-orma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Serializer.hpp"
-
-
-/* ------------ CONSTRUCTORS AND DESTRUCTOR ------------ */
-
-/**
- * @brief Construct a new Serializer object with default values.
- */
-Serializer::Serializer( void ) {
-	std::cout << GREEN << "Serializer default constructor called" << RESET << std::endl;
-}
 
 /**
  * @brief  Default constructor for Serializer.
  * This class is intended to be non-instantiable by users; the constructor
  * is private to enforce static-only usage. The printed message is diagnostic.
  */
+Serializer::Serializer( void ) {
+	std::cout << GREEN << "Serializer default constructor called" << RESET << std::endl;
+}
 
 /**
  * @brief Construct a new Serializer object by copying the values from another object.
@@ -37,24 +30,6 @@ Serializer::Serializer( const Serializer &otherSerialize ) {
 	*this = otherSerialize;
 	std::cout << GREEN << "Serializer copy constructor called" << RESET << std::endl;
 }
-
-/**
- * @brief  Copy constructor.
- * Copies the (unused) members from another Serializer instance.
- */
-
-/**
- * @brief Destroy the Serializer object.
- */
-Serializer::~Serializer( void ) {
-	std::cout << RED << "Serializer destructor called" << RESET << std::endl;
-}
-
-/**
- * @brief  Destructor for Serializer.
- * Kept for symmetry but unnecessary for a static-only utility class.
- */
-/* ------------ OVERLOAD METHODS ------------ */
 
 /**
  * @brief Overloaded assignment operator for Serializer class.
@@ -69,25 +44,31 @@ Serializer & Serializer::operator=( const Serializer &otherSerialize ) {
 	return *this;
 }
 
+/**
+ * @brief Destroy the Serializer object.
+ */
+Serializer::~Serializer( void ) {
+	std::cout << RED << "Serializer destructor called" << RESET << std::endl;
+}
 
+/**
+ * @brief Serialize a Data* pointer to an integer representation.
+ *
+ * Uses reinterpret_cast to convert the pointer to an integer type capable
+ * of holding pointer values (`uintptr_t`). This is purely a bitwise
+ * representation and not a deep serialization.
+ */
 uintptr_t	Serializer::serialize( Data *ptr ) {
-	/**
-	 * @brief Serialize a Data* pointer to an integer representation.
-	 *
-	 * Uses reinterpret_cast to convert the pointer to an integer type capable
-	 * of holding pointer values (`uintptr_t`). This is purely a bitwise
-	 * representation and not a deep serialization.
-	 */
 	return (reinterpret_cast<uintptr_t>(ptr));
 }
 
+/**
+ * @brief Deserialize an integer back into a Data* pointer.
+ *
+ * Performs the inverse reinterpret_cast of `serialize()` to restore the
+ * pointer value. The resulting pointer should only be used if the original
+ * object still exists at the same address.
+ */
 Data * Serializer::deserialize( uintptr_t raw ) {
-	/**
-	 * @brief Deserialize an integer back into a Data* pointer.
-	 *
-	 * Performs the inverse reinterpret_cast of `serialize()` to restore the
-	 * pointer value. The resulting pointer should only be used if the original
-	 * object still exists at the same address.
-	 */
 	return (reinterpret_cast<Data *>(raw));
 }
