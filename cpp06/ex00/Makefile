@@ -6,7 +6,7 @@
 #    By: jde-orma <jde-orma@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/12/22 15:17:46 by jde-orma          #+#    #+#              #
-#    Updated: 2025/12/22 15:18:02 by jde-orma         ###   ########.fr        #
+#    Updated: 2025/12/31 15:47:54 by jde-orma         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,13 +25,13 @@ INC_DIR     = ./
 OBJ_DIR     = ./
 BIN_DIR     = ./
 
-SRC_FILE	= main.cpp ScalarConversion.cpp
+SRC_FILE	= main.cpp ScalarConverter.cpp
 SRC         = $(addprefix $(SRC_DIR), $(SRC_FILE))
 
 OBJ_FILE    = $(SRC_FILE:.cpp=.o)
 OBJ         = $(addprefix $(OBJ_DIR), $(OBJ_FILE))
 
-NAME        = scalar_conversion
+NAME        = convert
 
 CODE_BIN    = $(BIN_DIR)$(NAME)
 

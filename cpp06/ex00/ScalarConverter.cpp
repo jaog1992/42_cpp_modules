@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ScalarConversion.cpp                               :+:      :+:    :+:   */
+/*   ScalarConverter.cpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jde-orma <jde-orma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/22 15:17:52 by jde-orma          #+#    #+#             */
-/*   Updated: 2025/12/31 04:41:36 by jde-orma         ###   ########.fr       */
+/*   Updated: 2025/12/31 15:47:10 by jde-orma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ScalarConversion.hpp"
+#include "ScalarConverter.hpp"
 #include <cmath>
 #include <cerrno>
 #include <cctype>
@@ -22,15 +22,9 @@
  * exists for parity but is not required for normal usage. It prints
  * a diagnostic message to standard output when invoked.
  */
-ScalarConversion::ScalarConversion( void ) {
-	std::cout << GREEN << "ScalarConversion default constructor called" << RESET << std::endl;
+ScalarConverter::ScalarConverter( void ) {
+	std::cout << GREEN << "ScalarConverter default constructor called" << RESET << std::endl;
 }
-
-/*
-
- * @brief Default constructor (diagnostic). The class is designed for static use
- * only; this private constructor should never be called by users.
- */
 
 /**
  * @brief Copy constructor.
@@ -38,18 +32,12 @@ ScalarConversion::ScalarConversion( void ) {
  * Performs a shallow copy of the provided instance. Present for completeness
  * but not required by the static usage pattern of the class.
  *
- * @param oneScalarConversion Reference to the ScalarConversion to copy.
+ * @param oneScalarConverter Reference to the ScalarConverter to copy.
  */
-ScalarConversion::ScalarConversion( const ScalarConversion &oneScalarConversion ) {
-	*this = oneScalarConversion;
-	std::cout << GREEN << "ScalarConversion copy constructor called" << RESET << std::endl;
+ScalarConverter::ScalarConverter( const ScalarConverter &oneScalarConverter ) {
+	*this = oneScalarConverter;
+	std::cout << GREEN << "ScalarConverter copy constructor called" << RESET << std::endl;
 }
-
-/*
-
- * @brief Copy constructor (diagnostic). Exists for completeness but not required
- * for a static-only utility class.
- */
 
 /**
  * @brief Assignment operator.
@@ -57,19 +45,13 @@ ScalarConversion::ScalarConversion( const ScalarConversion &oneScalarConversion 
  * No-op assignment operator. Kept to fulfill the rule of three/five
  * but the class holds no mutable state that requires copying.
  *
- * @param oneScalarConversion Source object to assign from.
+ * @param oneScalarConverter Source object to assign from.
  * @return Reference to this instance.
  */
-ScalarConversion & ScalarConversion::operator=( const ScalarConversion &oneScalarConversion ) {
-	(void)oneScalarConversion;
+ScalarConverter & ScalarConverter::operator=( const ScalarConverter &oneScalarConverter ) {
+	( void )oneScalarConverter;
 	return *this;
 }
-
-/*
-
- * @brief Assignment operator overload. No-op implementation used so the class
- * remains non-instantiable in practice.
- */
 
 /**
  * @brief Destructor.
@@ -77,16 +59,9 @@ ScalarConversion & ScalarConversion::operator=( const ScalarConversion &oneScala
  * Prints a diagnostic message when the object is destroyed. The class
  * is effectively stateless and this destructor performs no special cleanup.
  */
-ScalarConversion::~ScalarConversion( void ) {
-	std::cout << RED << "ScalarConversion destructor called" << RESET << std::endl;
+ScalarConverter::~ScalarConverter( void ) {
+	std::cout << RED << "ScalarConverter destructor called" << RESET << std::endl;
 }
-
-/*
-
- * @brief Destructor (diagnostic). Present only for parity with C++ object model.
- */
-
-/*******************************CHAR CONVERSION*************************************/
 
 /**
  * @brief Convert a single character literal to other scalar types and print results.
@@ -98,19 +73,17 @@ ScalarConversion::~ScalarConversion( void ) {
  *
  * @param c Character to convert.
  */
-void	ScalarConversion::charConversion( const char &c ) {
-		if (isprint(c)) {
+void	ScalarConverter::charConversion( const char &c ) {
+		if (isprint( c )) {
 			std::cout << "char: '" << c << "'" << std::endl;
 		} else {
 			std::cout << "char: Non displayable" << std::endl;
 		}
-		std::cout << "int: " << static_cast<int>(c) << std::endl;
-		std::cout << "float: " << static_cast<float>(c) << ".0f" << std::endl;
-		std::cout << "double: " << static_cast<double>(c) << ".0" << std::endl;
+		std::cout << "int: " << static_cast<int>( c ) << std::endl;
+		std::cout << "float: " << static_cast<float>( c ) << ".0f" << std::endl;
+		std::cout << "double: " << static_cast<double>( c ) << ".0" << std::endl;
 }
 
-
-/*******************************INT CONVERSION**************************************/
 
 /**
  * @brief Convert an integer literal to other scalar types and print results.
@@ -122,35 +95,16 @@ void	ScalarConversion::charConversion( const char &c ) {
  *
  * @param num Integer value to convert.
  */
-void	ScalarConversion::intConversion( const int &num ) {
-	char	c = static_cast<char>(num);
-	if (!isprint(c)) {
+void	ScalarConverter::intConversion( const int &num ) {
+	char	c = static_cast<char>( num );
+	if (!isprint( c )) {
 		std::cout << "char: Non displayable" << std::endl;
 	} else {
 		std::cout << "char: '" << c << "'" << std::endl;
 	}
 	std::cout << "int: " << num << std::endl;
-	std::cout << "float: " << static_cast<float>(num) << ".0f" << std::endl;
-	std::cout << "double: " << static_cast<double>(num) << ".0" << std::endl;
-}
-
-bool	ScalarConversion::isInt( const std::string &literal ) {
-	size_t	i = 0;
-
-	if (literal[0] == '-' || literal[0] == '+') {
-		i++;
-	}
-	while (i < literal.length()) {
-		if (!isdigit(literal[i])) {
-			return false;
-		}
-		i++;
-	}
-	double	num = atof(literal.c_str());
-	if (num > INT_MAX || num < INT_MIN) {
-		return false;
-	}
-	return true;
+	std::cout << "float: " << static_cast<float>( num ) << ".0f" << std::endl;
+	std::cout << "double: " << static_cast<double>( num ) << ".0" << std::endl;
 }
 
 /**
@@ -164,18 +118,23 @@ bool	ScalarConversion::isInt( const std::string &literal ) {
  * @return true if the string is a valid integer representation and fits in `int`.
  */
 
+bool	ScalarConverter::isInt( const std::string &literal ) {
+	size_t	i = 0;
 
-/*******************************FLOAT CONVERSION************************************/
-
-bool	ScalarConversion::pseudoFloatConversion( const std::string &literal ) {
-	if (literal == "nanf" || literal == "+inff" || literal == "-inff" || literal == "inff") {
-		std::cout << "char: impossible" << std::endl;
-		std::cout << "int: impossible" << std::endl;
-		std::cout << "float: " << literal << std::endl;
-		std::cout << "double: " << literal.substr(0, literal.length() - 1) << std::endl;
-		return true;
+	if (literal[0] == '-' || literal[0] == '+') {
+		i++;
 	}
-	return false;
+	while (i < literal.length()) {
+		if (!isdigit(literal[i])) {
+			return EXIT_SUCCESS;
+		}
+		i++;
+	}
+	double	num = atof(literal.c_str());
+	if (num > INT_MAX || num < INT_MIN) {
+		return EXIT_SUCCESS;
+	}
+	return EXIT_FAILURE;
 }
 
 /**
@@ -188,11 +147,17 @@ bool	ScalarConversion::pseudoFloatConversion( const std::string &literal ) {
  * @param literal Input string to test.
  * @return true if the literal is a recognized pseudo-float.
  */
-
-bool	ScalarConversion::isFloat( const std::string &literal ) {
-	(void)literal;
-	return false; // replaced by robust parsing in convert()
+bool	ScalarConverter::pseudoFloatConversion( const std::string &literal ) {
+	if (literal == "nanf" || literal == "+inff" || literal == "-inff" || literal == "inff") {
+		std::cout << "char: impossible" << std::endl;
+		std::cout << "int: impossible" << std::endl;
+		std::cout << "float: " << literal << std::endl;
+		std::cout << "double: " << literal.substr( 0, literal.length() - 1 ) << std::endl;
+		return EXIT_FAILURE;
+	}
+	return EXIT_SUCCESS;
 }
+
 
 /**
  * @brief Heuristic: determine if a string could represent a float literal.
@@ -204,37 +169,9 @@ bool	ScalarConversion::isFloat( const std::string &literal ) {
  * @param literal Input string to inspect.
  * @return true if the string resembles a float literal (not used currently).
  */
-
-
-void	ScalarConversion::floatConversion( const float &num ) {
-
-	char	c = static_cast<char>(num);
-	
-	if (!isprint(c)) {
-		std::cout << "char: Non displayable" << std::endl;
-	} else {
-		std::cout << "char: '" << c << "'" << std::endl;
-	}
-	
-	if (num > INT_MAX|| num < INT_MIN) {
-		std::cout << "int: impossible" << std::endl;
-	} else {
-		std::cout << "int: " << static_cast<int>(num) << std::endl;
-	}
-	
-	if (std::floor(num) == num) {
-		std::cout << "float: " << std::fixed << std::setprecision(1) << num << "f" << std::endl;
-	} else {
-		std::cout << "float: " << num << "f" << std::endl;
-	}
-	
-	double d = static_cast<double>(num);
-	
-	if (std::floor(d) == d) {
-		std::cout << "double: " << std::fixed << std::setprecision(1) << d << std::endl;
-	} else {
-		std::cout << "double: " << d << std::endl;
-	}
+bool	ScalarConverter::isFloat( const std::string &literal ) {
+	( void )literal;
+	return EXIT_SUCCESS; // replaced by robust parsing in convert()
 }
 
 /**
@@ -246,18 +183,35 @@ void	ScalarConversion::floatConversion( const float &num ) {
  *
  * @param num Float value to convert.
  */
+void	ScalarConverter::floatConversion( const float &num ) {
 
-/******************************DOUBLE CONVERSION************************************/
-
-bool	ScalarConversion::pseudoDoubleConversion( const std::string &literal ) {
-	if (literal == "nan" || literal == "+inf" || literal == "-inf" || literal == "inf") {
-		std::cout << "char: impossible" << std::endl;
-		std::cout << "int: impossible" << std::endl;
-		std::cout << "float: " << literal << "f" << std::endl;
-		std::cout << "double: " << literal << std::endl;
-		return true;
+	char	c = static_cast<char>( num );
+	
+	if (!isprint( c )) {
+		std::cout << "char: Non displayable" << std::endl;
+	} else {
+		std::cout << "char: '" << c << "'" << std::endl;
 	}
-	return false;
+	
+	if (num > INT_MAX|| num < INT_MIN) {
+		std::cout << "int: impossible" << std::endl;
+	} else {
+		std::cout << "int: " << static_cast<int>( num ) << std::endl;
+	}
+	
+	if (std::floor( num ) == num) {
+		std::cout << "float: " << std::fixed << std::setprecision( 1 ) << num << "f" << std::endl;
+	} else {
+		std::cout << "float: " << num << "f" << std::endl;
+	}
+	
+	double d = static_cast<double>( num );
+	
+	if (std::floor( d ) == d) {
+		std::cout << "double: " << std::fixed << std::setprecision( 1 ) << d << std::endl;
+	} else {
+		std::cout << "double: " << d << std::endl;
+	}
 }
 
 /**
@@ -269,10 +223,15 @@ bool	ScalarConversion::pseudoDoubleConversion( const std::string &literal ) {
  * @param literal Input string to test.
  * @return true if the literal is a recognized pseudo-double.
  */
-
-bool	ScalarConversion::isDouble( const std::string &literal ) {
-	(void)literal;
-	return false; // replaced by robust parsing in convert()
+bool	ScalarConverter::pseudoDoubleConversion( const std::string &literal ) {
+	if (literal == "nan" || literal == "+inf" || literal == "-inf" || literal == "inf") {
+		std::cout << "char: impossible" << std::endl;
+		std::cout << "int: impossible" << std::endl;
+		std::cout << "float: " << literal << "f" << std::endl;
+		std::cout << "double: " << literal << std::endl;
+		return EXIT_FAILURE;
+	}
+	return EXIT_SUCCESS;
 }
 
 /**
@@ -284,30 +243,9 @@ bool	ScalarConversion::isDouble( const std::string &literal ) {
  * @param literal Input string to inspect.
  * @return true if the string resembles a double literal (not used currently).
  */
-
-void	ScalarConversion::doubleConversion( const double &num ) {
-	char	c = static_cast<char>(num);
-	if (!isprint(c)) {
-		std::cout << "char: Non displayable" << std::endl;
-	} else {
-		std::cout << "char: '" << c << "'" << std::endl;
-	}
-	if (num > INT_MAX|| num < INT_MIN) {
-		std::cout << "int: impossible" << std::endl;
-	} else {
-		std::cout << "int: " << static_cast<int>(num) << std::endl;
-	}
-	float f = static_cast<float>(num);
-	if (std::floor(f) == f) {
-		std::cout << "float: " << std::fixed << std::setprecision(1) << f << "f" << std::endl;
-	} else {
-		std::cout << "float: " << f << "f" << std::endl;
-	}
-	if (std::floor(num) == num) {
-		std::cout << "double: " << std::fixed << std::setprecision(1) << num << std::endl;
-	} else {
-		std::cout << "double: " << num << std::endl;
-	}
+ bool	ScalarConverter::isDouble( const std::string &literal ) {
+	( void )literal;
+	return EXIT_SUCCESS; // replaced by robust parsing in convert()
 }
 
 /**
@@ -320,19 +258,55 @@ void	ScalarConversion::doubleConversion( const double &num ) {
  *
  * @param num Double value to convert.
  */
+void	ScalarConverter::doubleConversion( const double &num ) {
+	char	c = static_cast<char>( num );
+	if (!isprint( c )) {
+		std::cout << "char: Non displayable" << std::endl;
+	} else {
+		std::cout << "char: '" << c << "'" << std::endl;
+	}
+	if (num > INT_MAX|| num < INT_MIN) {
+		std::cout << "int: impossible" << std::endl;
+	} else {
+		std::cout << "int: " << static_cast<int>( num ) << std::endl;
+	}
+	float f = static_cast<float>( num );
+	if (std::floor( f ) == f) {
+		std::cout << "float: " << std::fixed << std::setprecision( 1 ) << f << "f" << std::endl;
+	} else {
+		std::cout << "float: " << f << "f" << std::endl;
+	}
+	if (std::floor( num ) == num) {
+		std::cout << "double: " << std::fixed << std::setprecision( 1 ) << num << std::endl;
+	} else {
+		std::cout << "double: " << num << std::endl;
+	}
+}
 
-/***********************************************************************************/
-
-int ScalarConversion::convert( const std::string &literal ) {
+/**
+ * @brief Convert a string literal to appropriate scalar types and print results.
+ *
+ * This is the main entry point for converting a string representation of a
+ * scalar value. It attempts to parse the input as a `char`, `int`, `float`,
+ * or `double` in that order, printing the conversions for each type. If the
+ * input does not match any valid format, it prints "impossible" for all types.
+ *
+ * @param literal Input string to convert.
+ * @return EXIT_SUCCESS on successful conversion/printing.
+ */
+int ScalarConverter::convert( const std::string &literal ) {
+	
 	if (literal.length() == 1 && !isdigit(literal[0])) {
 		charConversion(literal[0]);
 		return EXIT_SUCCESS;
 	}
 
-	if (pseudoFloatConversion(literal))
+	if (pseudoFloatConversion(literal))	{
 		return EXIT_SUCCESS;
-	if (pseudoDoubleConversion(literal))
+	}
+	if (pseudoDoubleConversion(literal)) {
 		return EXIT_SUCCESS;
+	}
 
 	// Try int
 	errno = 0;
