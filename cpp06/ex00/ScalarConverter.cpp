@@ -6,7 +6,7 @@
 /*   By: jde-orma <jde-orma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/22 15:17:52 by jde-orma          #+#    #+#             */
-/*   Updated: 2025/12/31 16:58:02 by jde-orma         ###   ########.fr       */
+/*   Updated: 2025/12/31 17:30:44 by jde-orma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ ScalarConverter::~ScalarConverter( void ) {
 void	ScalarConverter::charConversion( const char &c ) {
 
 	if (isprint( c )) {
-		std::cout << "char: '" << c << "'" << std::endl;
+		std::cout << "char: '" << static_cast<unsigned char>(c) << "'" << std::endl;
 	} else {
 		std::cout << "char: Non displayable" << std::endl;
 	}
@@ -108,8 +108,18 @@ void	ScalarConverter::intConversion( const int &num ) {
 	}
 	
 	std::cout << "int: " << num << std::endl;
-	std::cout << "float: " << static_cast<float>( num ) << ".0f" << std::endl;
-	std::cout << "double: " << static_cast<double>( num ) << ".0" << std::endl;
+	float fnum = static_cast<float>( num );
+	if (std::floor(fnum) == fnum) {
+		std::cout << "float: " << std::fixed << std::setprecision( 1 ) << fnum << "f" << std::endl;
+	} else {
+		std::cout << "float: " << fnum << "f" << std::endl;
+	}
+	double dnum = static_cast<double>( num );
+	if (std::floor(dnum) == dnum) {
+		std::cout << "double: " << std::fixed << std::setprecision( 1 ) << dnum << std::endl;
+	} else {
+		std::cout << "double: " << dnum << std::endl;
+	}
 }
 
 /**
@@ -132,7 +142,7 @@ bool	ScalarConverter::isInt( const std::string &literal ) {
 	}
 	while (i < literal.length()) {
 		if (!isdigit(literal[i])) {
-			return TRUE;
+			return false;
 		}
 		i++;
 	}
@@ -140,10 +150,10 @@ bool	ScalarConverter::isInt( const std::string &literal ) {
 	double	num = atof(literal.c_str());
 	
 	if (num > INT_MAX || num < INT_MIN) {
-		return TRUE;
+		return false;
 	}
 
-	return FALSE;
+	return true;
 }
 
 /**
@@ -164,10 +174,10 @@ bool	ScalarConverter::pseudoFloatConversion( const std::string &literal ) {
 		std::cout << "float: " << literal << std::endl;
 		std::cout << "double: " << literal.substr( 0, literal.length() - 1 ) << std::endl;
 		
-		return TRUE;
+		return true;
 	}
 	
-	return FALSE;
+	return false;
 }
 
 
@@ -183,7 +193,7 @@ bool	ScalarConverter::pseudoFloatConversion( const std::string &literal ) {
  */
 bool	ScalarConverter::isFloat( const std::string &literal ) {
 	( void )literal;
-	return FALSE; // replaced by robust parsing in convert()
+	return false; // replaced by robust parsing in convert()
 }
 
 /**
@@ -199,7 +209,7 @@ void	ScalarConverter::floatConversion( const float &num ) {
 
 	char	c = static_cast<char>( num );
 	
-	if (!isprint( c )) {
+	if (!isprint(static_cast<unsigned char>( c ))) {
 		std::cout << "char: Non displayable" << std::endl;
 	} else {
 		std::cout << "char: '" << c << "'" << std::endl;
@@ -237,16 +247,16 @@ void	ScalarConverter::floatConversion( const float &num ) {
  */
 bool	ScalarConverter::pseudoDoubleConversion( const std::string &literal ) {
 
-	if (literal == "nan" || literal == "+inf" || literal == "-inf" || literal == "inf") {
+	if (literal == "nan" || literal == "+inf" || literal == "-inf" || literal == "inf"){
 		std::cout << "char: impossible" << std::endl;
 		std::cout << "int: impossible" << std::endl;
 		std::cout << "float: " << literal << "f" << std::endl;
 		std::cout << "double: " << literal << std::endl;
 
-		return TRUE;
+		return true;
 	}
 	
-	return FALSE;
+	return false;
 }
 
 /**
@@ -260,7 +270,7 @@ bool	ScalarConverter::pseudoDoubleConversion( const std::string &literal ) {
  */
  bool	ScalarConverter::isDouble( const std::string &literal ) {
 	( void )literal;
-	return FALSE; // replaced by robust parsing in convert()
+	return false; // replaced by robust parsing in convert()
 }
 
 /**
@@ -310,7 +320,14 @@ void	ScalarConverter::doubleConversion( const double &num ) {
  * @return EXIT_SUCCESS on successful conversion/printing.
  */
 int ScalarConverter::convert( const std::string &literal ) {
-	
+	if (literal.empty()) {
+		std::cout << "char: impossible" << std::endl;
+		std::cout << "int: impossible" << std::endl;
+		std::cout << "float: impossible" << std::endl;
+		std::cout << "double: impossible" << std::endl;
+		return EXIT_FAILURE;
+	}
+
 	if (literal.length() == 1 && !isdigit(literal[0])) {
 		charConversion(literal[0]);
 		return EXIT_SUCCESS;
@@ -327,7 +344,7 @@ int ScalarConverter::convert( const std::string &literal ) {
 	errno = 0;
 	char *endptr = NULL;
 	long int li = std::strtol(literal.c_str(), &endptr, 10);
-	if (endptr && *endptr == '\0' && errno == 0 && li <= INT_MAX && li >= INT_MIN) {
+    if (endptr && endptr != literal.c_str() && *endptr == '\0' && errno == 0 && li <= INT_MAX && li >= INT_MIN) {
 		intConversion(static_cast<int>(li));
 		return EXIT_SUCCESS;
 	}
@@ -336,7 +353,7 @@ int ScalarConverter::convert( const std::string &literal ) {
 	errno = 0;
 	endptr = NULL;
 	float fv = std::strtof(literal.c_str(), &endptr);
-	if (endptr && *endptr == 'f' && *(endptr + 1) == '\0' && errno == 0) {
+    if (endptr && endptr != literal.c_str() && *endptr == 'f' && *(endptr + 1) == '\0' && errno == 0) {
 		floatConversion(fv);
 		return EXIT_SUCCESS;
 	}
@@ -345,7 +362,7 @@ int ScalarConverter::convert( const std::string &literal ) {
 	errno = 0;
 	endptr = NULL;
 	double dv = std::strtod(literal.c_str(), &endptr);
-	if (endptr && *endptr == '\0' && errno == 0) {
+    if (endptr && endptr != literal.c_str() && *endptr == '\0' && errno == 0) {
 		doubleConversion(dv);
 		return EXIT_SUCCESS;
 	}
