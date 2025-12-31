@@ -6,7 +6,7 @@
 /*   By: jde-orma <jde-orma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/22 15:19:37 by jde-orma          #+#    #+#             */
-/*   Updated: 2025/12/31 16:23:25 by jde-orma         ###   ########.fr       */
+/*   Updated: 2025/12/31 16:27:16 by jde-orma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ void	identify( Base &p ) {
  * @return Base* Pointer to newly created object (A/B/C).
  */
 Base* generate( void ) {
-	switch (srand() % 3) {
+	switch (rand() % 3) {
 		case 0: return new A();
 		case 1: return new B();
 		case 2: return new C();
