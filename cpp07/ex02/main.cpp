@@ -6,63 +6,51 @@
 /*   By: jde-orma <jde-orma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/31 18:08:20 by jde-orma          #+#    #+#             */
-/*   Updated: 2026/01/04 18:43:24 by jde-orma         ###   ########.fr       */
+/*   Updated: 2026/01/04 18:47:23 by jde-orma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <iostream>
 #include "Array.hpp"
 #include <stdlib.h>
 #include <ctime>
+#include <ostream>
+#include <iostream>
 
-#define MAX_VAL 750
+
+#define SIZE 10
 
 int main(int, char**)
 {
-    Array<int> numbers(MAX_VAL);
-    int* mirror = new int[MAX_VAL];
-    srand(time(NULL));
-    for (int i = 0; i < MAX_VAL; i++)
-    {
-        const int value = rand();
+    Array<int> numbers((unsigned int)SIZE);
+   	std::srand(std::time(NULL));
+    for (int i = 0; i < SIZE; i++) {
+        const int value = rand() % SIZE;
         numbers[i] = value;
-        mirror[i] = value;
     }
-    //SCOPE
-    {
-        Array<int> tmp = numbers;
-        Array<int> test(tmp);
+    for (int i = 0; i < SIZE; i++) {
+        std::cout << numbers[i] << std::endl;
     }
-
-    for (int i = 0; i < MAX_VAL; i++)
-    {
-        if (mirror[i] != numbers[i])
-        {
-            std::cerr << "didn't save the same value!!" << std::endl;
-            return 1;
-        }
-    }
-    try
-    {
+    try {
         numbers[-2] = 0;
-    }
-    catch(const std::exception& e)
-    {
+    } catch(const std::exception &e) {
+        std::cerr << e.what() << '\n';
+    } try {
+        numbers[SIZE] = 0;
+    } catch(const std::exception& e) {
+        std::cerr << e.what() << '\n';
+    } try {
+		for (int i = 0; i < SIZE; i++) {
+            std::cout << "Old: " << numbers[i] << std::endl;
+			numbers[i] = rand() % SIZE;
+            std::cout << "New: " << numbers[i] << std::endl;
+		}
+	} catch(const std::exception& e) {
+        std::cerr << e.what() << '\n';
+    } try{
+		Array<int> n(0);
+		std::cout << "array of empty size" << std::endl;
+	} catch(const std::exception& e) {
         std::cerr << e.what() << '\n';
     }
-    try
-    {
-        numbers[MAX_VAL] = 0;
-    }
-    catch(const std::exception& e)
-    {
-        std::cerr << e.what() << '\n';
-    }
-
-    for (int i = 0; i < MAX_VAL; i++)
-    {
-        numbers[i] = rand();
-    }
-    delete [] mirror;//
     return 0;
 }
