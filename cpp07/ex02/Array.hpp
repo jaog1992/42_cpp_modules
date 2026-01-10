@@ -15,6 +15,8 @@
 
 # define ARRAY_HPP
 
+# include <cstddef>
+
 #include <cstddef>
 
 template <typename T>
@@ -31,10 +33,10 @@ class Array {
         ~Array( void );
 
         Array & operator=( const Array &otherArray );
-
         T& operator[](unsigned int index);
+        const T& operator[](unsigned int index) const;
 
-        unsigned int size() const;
+        std::size_t size() const;
 };
 
 # include "Array.tpp"

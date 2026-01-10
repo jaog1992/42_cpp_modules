@@ -38,7 +38,7 @@
  * @param function The function to apply to each element of the array.
  */
 template <typename T, typename F>
-void	iter( T *array, std::size_t size, F function ) {
+void	iter( T *array, std::size_t const size, F function ) {
 	for (std::size_t i = 0; i < size; i++) {
 		function(array[i]);
 	}

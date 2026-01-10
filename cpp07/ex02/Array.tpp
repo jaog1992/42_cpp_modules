@@ -6,7 +6,7 @@
 /*   By: jde-orma <jde-orma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/31 18:08:03 by jde-orma          #+#    #+#             */
-/*   Updated: 2025/12/31 18:08:11 by jde-orma         ###   ########.fr       */
+/*   Updated: 2026/01/10 16:27:24 by jde-orma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,9 +62,16 @@ T& Array<T>::operator[](unsigned int index) {
     }
     return _data[index];
 }
+template <typename T>
+const T& Array<T>::operator[](unsigned int index) const {
+    if (index >= _size) {
+        throw std::out_of_range("Index out of bounds");
+    }
+    return _data[index];
+}
 
 template <typename T>
-unsigned int Array<T>::size() const {
+std::size_t Array<T>::size() const {
     return _size;
 }
 #endif

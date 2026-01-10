@@ -17,6 +17,8 @@ CC          = c++
 CCFLAGS     = -Wall -Wextra -Werror
 CPP_VERSION = -std=c++98
 
+RM = rm -rf
+
 DEF_COLOR	= \033[0;39m
 BLUE		= \033[0;94m
 GREEN		= \033[0;92m
