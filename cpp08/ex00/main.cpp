@@ -6,11 +6,11 @@
 /*   By: jde-orma <jde-orma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/04 18:53:22 by jde-orma          #+#    #+#             */
-/*   Updated: 2026/01/04 18:53:25 by jde-orma         ###   ########.fr       */
+/*   Updated: 2026/01/10 17:46:30 by jde-orma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Easyfind.hpp"
+#include "easyfind.hpp"
 
 #include <vector>
 #include <iostream>
@@ -61,8 +61,8 @@ int	main( void ) {
 			d.push_front(i);
 		}
 	}
-	testContainer(v, 4);
-	testContainer(v, 7);
+	testContainer(d, 4);
+	testContainer(d, 7);
 
 	std::cout << "--- LIST ---" << std::endl;
 	std::list<int>		l;
@@ -73,6 +73,6 @@ int	main( void ) {
 			l.push_back(i);
 		}
 	}
-	testContainer(v, 4);
-	testContainer(v, 7);
+	testContainer(l, 4);
+	testContainer(l, 7);
 }

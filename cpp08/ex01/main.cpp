@@ -6,7 +6,7 @@
 /*   By: jde-orma <jde-orma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/04 18:57:12 by jde-orma          #+#    #+#             */
-/*   Updated: 2026/01/04 18:57:14 by jde-orma         ###   ########.fr       */
+/*   Updated: 2026/01/10 18:29:38 by jde-orma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,78 +14,46 @@
 
 #include <ctime>
 #include <cstdlib>
+#define SIZE 10000
 
-/**
- * @brief Tests the Span class by adding a sequence of random numbers.
- *
- * This function creates a Span object with a given capacity, fills a vector with random integers,
- * and adds them to the Span object. It then prints the shortest and longest spans.
- *
- * @param capacity The number of elements to generate and add to the Span object.
- */
-void    testSequence( int capacity ) {
-    std::cout << GREEN << "\nSequence tests\n" << RESET << std::endl;
+void testSpan(int capacity) {
     try {
-        Span                span(capacity);
-        std::vector<int>    v1;
-        v1.reserve(capacity);
-        srand(time(0));
-		for (int i = 0; i < capacity; ++i) {
-            v1.push_back(rand() % capacity);
-        }
-        span.addSequence(v1.begin(), v1.end());
-        std::cout << "Span created with " << capacity << " numbers." << std::endl;
-        std::cout << "Capacity: " << span.getN() << std::endl;
-        //span.printVector();
-        std::cout << "Shortest span: " << span.shortestSpan() << std::endl;
-		std::cout << "Longest span: " << span.longestSpan() << std::endl;
-	} catch (const std::length_error &e) {
-        std::cerr << RED << e.what() << RESET << std::endl;
-    } catch (const std::logic_error &e) {
-        std::cerr << RED << e.what() << RESET << std::endl;
-	} catch(const std::exception &e) {
-        std::cerr << RED << e.what() << RESET << std::endl;
-	}
+        Span sp(capacity);
+        for (int i = 0; i < capacity; ++i)
+            sp.addNumber(rand() % capacity);
+
+        std::cout << "Shortest span: " << sp.shortestSpan() << std::endl;
+        std::cout << "Longest span: " << sp.longestSpan() << std::endl;
+
+        // Intentar agregar un número extra (debe lanzar excepción)
+        sp.addNumber(99);
+    } catch (std::exception &e) {
+        std::cerr << e.what() << std::endl;
+    }
 }
 
-/**
- * @brief Tests the Span class by adding individual random numbers.
- *
- * This function creates a Span object with a given capacity, adds random integers one by one,
- * and then prints the shortest and longest spans. It also tries to add an extra number beyond
- * the Span's capacity to test exception handling.
- *
- * @param capacity The number of elements to generate and add to the Span object.
- */
-void    testSpan( int capacity ) {
-    std::cout << GREEN << "\nSpan tests\n" << RESET << std::endl;
+void testSequence(int capacity) {
     try {
-        Span    span(capacity);
+        Span sp(capacity);
+        std::vector<int> v;
+        v.reserve(capacity);
         srand(time(0));
-        for (int i = 0; i < capacity; i++) {
-            span.addNumber(rand() % capacity);
-        }
-        std::cout << "Span created with " << capacity << " numbers." << std::endl;
-        std::cout << "Capacity: " << span.getN() << std::endl;
-        span.printVector();
-		std::cout << "Shortest span: " << span.shortestSpan() << std::endl;
-		std::cout << "Longest span: " << span.longestSpan() << std::endl;
-        span.addNumber(99);
-    } catch (const std::length_error &e) {
-        std::cerr << RED << e.what() << RESET << std::endl;
-    } catch (const std::logic_error &e) {
-        std::cerr << RED << e.what() << RESET << std::endl;
-	} catch(const std::exception &e) {
-        std::cerr << RED << e.what() << RESET << std::endl;
-	}
+        for (int i = 0; i < capacity; ++i)
+            v.push_back(rand() % capacity);
+
+        sp.addSequence(v.begin(), v.end());
+
+        std::cout << "Shortest span: " << sp.shortestSpan() << std::endl;
+        std::cout << "Longest span: " << sp.longestSpan() << std::endl;
+    } catch (std::exception &e) {
+        std::cerr << e.what() << std::endl;
+    }
 }
 
-/**
- * @brief Main function to run the Span class tests.
- */
-int	main( void ) {
+int main() {
+    srand(time(0));
     testSpan(5);
     testSpan(1);
-    testSequence(10000);
+    testSequence(SIZE);
     return 0;
 }

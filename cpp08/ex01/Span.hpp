@@ -6,7 +6,7 @@
 /*   By: jde-orma <jde-orma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/04 18:54:14 by jde-orma          #+#    #+#             */
-/*   Updated: 2026/01/04 18:54:16 by jde-orma         ###   ########.fr       */
+/*   Updated: 2026/01/10 18:25:47 by jde-orma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,12 @@
 
 # define SPAN_HPP
 
-# include "../incs/Colors.hpp"
-
-# include <iostream>
 # include <vector>
 # include <stdexcept>
 # include <algorithm>
 # include <climits>
+# include <iostream>
+
 
 typedef std::vector<int>::iterator	VectorIt;
 
@@ -33,24 +32,33 @@ typedef std::vector<int>::iterator	VectorIt;
  */
 class Span {
 	private:
-		unsigned int		_maxSize;///< The maximum number of integers that can be stored
-		std::vector<int>	_numbers;///< The container storing the integers.
+		unsigned int		_maxSize;
+		std::vector<int>	_numbers;
 
 	public:
-		Span( void );
-		Span( unsigned int maxSize );
-		Span( const Span &oneSpan );
-		Span & operator=( const Span &oneSpan );
+		Span( unsigned int num );
+		Span( const Span &other );
+		Span & operator=( const Span &other );
 		~Span( void );
 
-		const unsigned int	&getN( void ) const;
-		void				setN( unsigned int maxSize );
+		void	addNumber( int num );
+    	template <typename It>
+		void addSequence(It start, It end) {
+		    if (_numbers.size() + std::distance(start, end) > _maxSize)
+		        throw std::out_of_range("Error: The container is full.");
+		    _numbers.insert(_numbers.end(), start, end);
+		}
 
-		void	addNumber( int nbr );
-		void	addSequence( VectorIt start, VectorIt end );
-		int		shortestSpan( void );
-		int		longestSpan( void );
-		void	printVector( void );
+		void printVector() const {
+		    for (std::vector<int>::const_iterator it = _numbers.begin(); it != _numbers.end(); ++it)
+		        std::cout << *it << " ";
+		    std::cout << std::endl;
+		}
+
+		int		shortestSpan( void ) const;
+		int		longestSpan( void ) const;
+
+		const std::vector<int> &getNumbers() const { return _numbers; }
 };
 
 #endif

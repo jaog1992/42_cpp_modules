@@ -6,7 +6,7 @@
 /*   By: jde-orma <jde-orma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/04 18:53:15 by jde-orma          #+#    #+#             */
-/*   Updated: 2026/01/04 18:53:18 by jde-orma         ###   ########.fr       */
+/*   Updated: 2026/01/10 17:44:26 by jde-orma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@
  */
 template <typename T>
 typename T::iterator	easyfind( T &container, int nbr ) {
-	typename T::iterator	it = find(container.begin(), container.end(), nbr);
+	typename T::iterator	it = std::find(container.begin(), container.end(), nbr);
 	if (it == container.end()) {
         std::ostringstream oss;
         oss << nbr;
