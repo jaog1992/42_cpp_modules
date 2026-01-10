@@ -47,9 +47,3 @@ Notes:
 
 ## How AI was used
 - AI assistance was used to harmonize documentation and Makefile styles across the repository and to add Doxygen-style comments. All functional logic remains authored and verified manually.
-
----
-
-If you want, I can:
-- Run `make` in the `cpp07` exercises and verify the binaries run.
-- Add small test cases for `Array` to ensure deep copy semantics.
