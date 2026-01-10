@@ -6,7 +6,7 @@
 /*   By: jde-orma <jde-orma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/31 18:05:03 by jde-orma          #+#    #+#             */
-/*   Updated: 2026/01/04 18:12:45 by jde-orma         ###   ########.fr       */
+/*   Updated: 2026/01/10 15:56:11 by jde-orma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@
  * @tparam T The type of elements in the array.
  * @tparam F The type of the function to be applied to each element.
  * @param array A pointer to the first element of the array.
- * @param size The number of elements in the array.
+ * @param size The number of elements in the array, passed as a const.
  * @param function The function to apply to each element of the array.
  */
 template <typename T, typename F>

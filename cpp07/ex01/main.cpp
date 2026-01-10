@@ -6,7 +6,7 @@
 /*   By: jde-orma <jde-orma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/31 18:05:13 by jde-orma          #+#    #+#             */
-/*   Updated: 2026/01/04 18:16:36 by jde-orma         ###   ########.fr       */
+/*   Updated: 2026/01/10 15:44:07 by jde-orma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,8 @@ int main() {
 	const double myArray2[] = {1.1, 2.2, 3.3, 4.4, 5.5};
 	::iter(myArray2, 5, printElement<double>);
 
-	std::string myArray3[] = {"CAF", "Signalling", "rules", "Metro", "Trains"};
-	::iter(myArray3, 5, printElement<std::string>);
+	std::string myArray3[] = {"CAF", "Signalling", "rules"};
+	::iter(myArray3, 3, printElement<std::string>);
 
 	return 0;
 }

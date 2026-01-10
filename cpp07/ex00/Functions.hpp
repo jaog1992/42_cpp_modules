@@ -6,7 +6,7 @@
 /*   By: jde-orma <jde-orma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/31 18:06:26 by jde-orma          #+#    #+#             */
-/*   Updated: 2025/12/31 18:07:08 by jde-orma         ###   ########.fr       */
+/*   Updated: 2026/01/10 15:38:55 by jde-orma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,42 +25,36 @@
  * 
  */
 template <typename T>
-void	swap( T &val1, T &val2 ) {
-	T	tmp = val1;
-	val1 = val2;
-	val2 = tmp;
+void	swap( T &x, T &y ) {
+	T	tmp = x;
+	x = y;
+	y = tmp;
 }
 
 /**
  * @brief Returns the smaller of the two values.
  * 
  * @tparam T The type of the variables to compare.
- * @param val1 The first value.
- * @param val2 The second value.
+ * @param x The first value.
+ * @param y The second value.
  * @return T The smaller of the two values.
  */
 template <typename T>
-T	min( T val1, T val2 ) {
-	if (val1 < val2) {
-		return val1;
-	}
-	return val2;
+T	min( T x, T y ) {
+	return (x < y) ? x : y;
 }
 
 /**
  * @brief Returns the larger of the two values.
  * 
  * @tparam T The type of the variables to compare.
- * @param val1 The first value.
- * @param val2 The second value.
+ * @param x The first value.
+ * @param y The second value.
  * @return T The larger of the two values.
  */
 template <typename T>
-T	max( T val1, T val2 ) {
-	if (val1 > val2) {
-		return val1;
-	}
-	return val2;
+T	max( T x, T y ) {
+	return (x > y) ? x : y;
 }
 
 #endif
