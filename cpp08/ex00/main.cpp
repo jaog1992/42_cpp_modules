@@ -6,11 +6,12 @@
 /*   By: jde-orma <jde-orma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/04 18:53:22 by jde-orma          #+#    #+#             */
-/*   Updated: 2026/01/10 17:46:30 by jde-orma         ###   ########.fr       */
+/*   Updated: 2026/01/19 13:30:25 by jde-orma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "easyfind.hpp"
+#include "Easyfind.hpp"
+#include "../incs/Colors.hpp"
 
 #include <vector>
 #include <iostream>
@@ -29,7 +30,8 @@ template <typename T>
 void	testContainer( T &container, int toFind ) {
 	try {
 		easyfind(container, toFind);
-		std::cout << GREEN << "The number " << toFind << " is in the container." << RESET << std::endl;
+		std::cout << GREEN << "The number " << toFind << " is in the container."
+		 << RESET << std::endl;
 	} catch (const std::runtime_error &e) {
 		std::cerr << RED << e.what() << RESET << std::endl;
 	}	
@@ -38,8 +40,8 @@ void	testContainer( T &container, int toFind ) {
 /**
  * @brief Entry point of the program.
  *
- * This function tests the easyfind function with different types of sequence containers
- * (vector, deque, list) and prints the results.
+ * This function tests the easyfind function with different types of sequence 
+ * containers * (vector, deque, list) and prints the results.
  *
  * @return int Returns 0 on successful execution.
  */
