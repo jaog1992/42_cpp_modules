@@ -6,41 +6,56 @@
 #    By: jde-orma <jde-orma@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/01/10 17:09:34 by jde-orma          #+#    #+#              #
-#    Updated: 2026/01/10 17:13:39 by jde-orma         ###   ########.fr        #
+#    Updated: 2026/01/31 18:19:10 by jde-orma         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME        = ex01
+USER_NAME   = "jde-orma"
+
 CC          = c++
-CFLAGS      = -Wall -Wextra -Werror -std=c++98
-INCLUDES    = -I includes
+CCFLAGS     = -Wall -Wextra -Werror
+CPP_VERSION = -std=c++98
+
+RM = rm -rf
+
+DEF_COLOR	= \033[0;39m
+BLUE		= \033[0;94m
+GREEN		= \033[0;92m
 
 SRC_DIR     = ./
-MAIN_SRCS   = main.cpp RPN.cpp
+INC_DIR     = ./
+OBJ_DIR     = ./
+BIN_DIR     = ./
 
-SRCS = $(addprefix $(SRC_DIR)/, $(MAIN_SRCS))
+SRC_FILE	= main.cpp RPN.cpp
+SRC         = $(addprefix $(SRC_DIR), $(SRC_FILE))
 
-OBJ_DIR = obj
-OBJS = $(SRCS:$(SRC_DIR)/%.cpp=$(OBJ_DIR)/%.o)
+OBJ_FILE    = $(SRC_FILE:.cpp=.o)
+OBJ         = $(addprefix $(OBJ_DIR), $(OBJ_FILE))
 
-DIRS = $(OBJ_DIR)
+NAME        = RPN
 
-all: $(DIRS) $(NAME)
+CODE_BIN    = $(BIN_DIR)$(NAME)
 
-$(NAME): $(OBJS)
-	$(CC) $(OBJS) -o $(NAME)
+all: $(CODE_BIN)
 
-$(OBJ_DIR)/%.o: $(SRC_DIR)/%.cpp
-	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
+$(CODE_BIN): $(OBJ)
+	@$(CC) $(CCFLAGS) $(CPP_VERSION) $(OBJ) -o $@
+	@echo "$(GREEN)✔ $(BLUE)$(USER_NAME)'s $(NAME) compilation$(DEF_COLOR)"
 
-$(DIRS):
-	mkdir -p $@
+$(OBJ_DIR)%.o: $(SRC_DIR)%.cpp | $(OBJ_DIR)
+	@$(CC) $(CCFLAGS) $(CPP_VERSION) -c $< -o $@
+
+$(OBJ_DIR):
+	@mkdir -p $(OBJ_DIR)
 
 clean:
-	rm -rf $(OBJ_DIR)
+	@$(RM) $(OBJ)
+	@echo "$(GREEN)✔ $(BLUE)$(USER_NAME)'s $(NAME) .o files removal$(DEF_COLOR)"
 
 fclean: clean
-	rm -f $(NAME)
+	@$(RM) $(CODE_BIN)
+	@echo "$(GREEN)✔ $(BLUE)$(USER_NAME)'s $(NAME) executable file removal$(DEF_COLOR)"
 
 re: fclean all
 

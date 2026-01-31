@@ -3,17 +3,28 @@
 /*                                                        :::      ::::::::   */
 /*   PmergeMe.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nquecedo <nquecedo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jde-orma <jde-orma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/28 16:53:27 by nquecedo          #+#    #+#             */
-/*   Updated: 2025/12/23 03:05:09 by nquecedo         ###   ########.fr       */
+/*   Updated: 2026/01/31 18:47:41 by jde-orma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
 #include "PmergeMe.hpp"
+#include "../incs/Colors.hpp"
+#include <iomanip>
 
-void	PmergeMe::ford_johnson_sort_vector(std::vector<int>& data)
+/**
+ * @file PmergeMe.cpp
+ * @brief Implementation of the PmergeMe utilities (Ford–Johnson merge-insertion sort wrappers).
+ *
+ * This file contains the sort implementations and parsing helper used by the
+ * `PmergeMe` program. Timing is printed to stdout; errors are reported by
+ * returning false from `parser` (the caller prints an error message).
+ */
+
+void	PmergeMe::fordJohnsonSortVector(std::vector<int>& data)
 {
 	if (data.size() <= 1)
 		return ;
@@ -42,7 +53,7 @@ void	PmergeMe::ford_johnson_sort_vector(std::vector<int>& data)
 		}
 	}
 
-	ford_johnson_sort_vector(losers);
+	fordJohnsonSortVector(losers);
 
 	for (size_t i = 0; i < winners.size(); i++)
 	{
@@ -80,7 +91,7 @@ void	PmergeMe::ford_johnson_sort_vector(std::vector<int>& data)
 	data = losers;
 }
 
-void	PmergeMe::ford_johnson_sort_list(std::list<int>& data)
+void	PmergeMe::fordJohnsonSortList(std::list<int>& data)
 {
 	if (data.size() <= 1)
 		return;
@@ -113,7 +124,7 @@ void	PmergeMe::ford_johnson_sort_list(std::list<int>& data)
 		}
 	}
 
-	ford_johnson_sort_list(losers);
+	fordJohnsonSortList(losers);
 
 	for (std::list<int>::iterator it_win = winners.begin(); it_win != winners.end(); ++it_win)
 	{
@@ -135,35 +146,39 @@ void	PmergeMe::ford_johnson_sort_list(std::list<int>& data)
 	data = losers;
 }
 
-void PmergeMe::sort_and_display_vector(std::vector<int>& input_data)
+void PmergeMe::sortVector(std::vector<int>& input_data)
 {
 	clock_t start = clock();
-	ford_johnson_sort_vector(input_data);
+	fordJohnsonSortVector(input_data);
 	clock_t end = clock();
 	double elapsed_time = static_cast<double>(end - start) / CLOCKS_PER_SEC * 1e6;
 	
-	std::cout << "Time to process a range of " << input_data.size() << " elements with std::vector : " << elapsed_time << " us" << std::endl;
+	std::cout << "Time to process a range of " << input_data.size() << " elements with std::vector : " << std::fixed << std::setprecision(5) << elapsed_time << " us" << std::endl;
 }
 
-void PmergeMe::sort_and_display_list(std::list<int>& input_data)
+void PmergeMe::sortList(std::list<int>& input_data)
 {
 	clock_t start = clock();
-	ford_johnson_sort_list(input_data);
+	fordJohnsonSortList(input_data);
 	clock_t end = clock();
 	double elapsed_time = static_cast<double>(end - start) / CLOCKS_PER_SEC * 1e6;
 	
-	std::cout << "Time to process a range of " << input_data.size() << " elements with std::list : " << elapsed_time << " us" << std::endl;
+	std::cout << "Time to process a range of " << input_data.size() << " elements with std::list : " << std::fixed << std::setprecision(5) << elapsed_time << " us" << std::endl;
 }
 
-bool	PmergeMe::parse_and_validate(int argc, char **argv, std::vector<int>& vec, std::list<int>& lst)
+bool	PmergeMe::parser(int argc, char **argv, std::vector<int>& vec, std::list<int>& lst)
 {
 	if (argc < 2)
+	{
 		return (false);
+	}
 	for (int i = 1; i < argc; ++i)
 	{
 		std::string arg = argv[i];
 		if (arg.empty())
+		{
 			return (false);
+		}
 
 		for (size_t j = 0; j < arg.size(); ++j)
 		{

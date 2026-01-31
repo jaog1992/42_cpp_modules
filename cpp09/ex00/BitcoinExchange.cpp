@@ -6,26 +6,28 @@
 /*   By: jde-orma <jde-orma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/10 17:08:26 by jde-orma          #+#    #+#             */
-/*   Updated: 2026/01/10 17:14:23 by jde-orma         ###   ########.fr       */
+/*   Updated: 2026/01/31 18:09:07 by jde-orma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "BitcoinExchange.hpp"
 
+#include "../incs/Colors.hpp"
+
 BitcoinExchange::BitcoinExchange()
 {
-	std::cout << "Default constructor called" << std::endl;
+	//std::cout << GREEN << "BitcoinExchange default constructor called" << RESET << std::endl;
 }
 
 BitcoinExchange::BitcoinExchange(const BitcoinExchange& other)
 {
-	std::cout << "Copy constructor called" << std::endl;
+	//std::cout << GREEN << "BitcoinExchange copy constructor called" << RESET << std::endl;
 	mapa = other.mapa;
 }
 
 BitcoinExchange& BitcoinExchange::operator=(const BitcoinExchange& other)
 {
-	std::cout << "Copy operator called" << std::endl;
+	//std::cout << CYAN << "BitcoinExchange copy operator called" << RESET << std::endl;
 	if (this != &other)
 		mapa = other.mapa;
 	return (*this);
@@ -33,55 +35,81 @@ BitcoinExchange& BitcoinExchange::operator=(const BitcoinExchange& other)
 
 BitcoinExchange::~BitcoinExchange()
 {
-	std::cout << "Destructor called" << std::endl;
+	//std::cout << RED << "BitcoinExchange destructor called" << RESET << std::endl;
 }
 
 std::string trim(const std::string& str)
 {
 	size_t first = str.find_first_not_of(" \t\n\r");
+
 	if (std::string::npos == first)
+	{
 		return (str);
+	}
+	
 	size_t last = str.find_last_not_of(" \t\n\r");
+	
 	return (str.substr(first, (last - first + 1)));
 }
 
-void	BitcoinExchange::parse_csv()
+/**
+ * @brief Check whether a date string appears valid (YYYY-MM-DD) with simple ranges.
+ *
+ * This performs syntactic checks and simple range checks for month and day.
+ * It intentionally does not validate month-specific day counts (e.g., Feb 30).
+ *
+ * @param dataStr Date string to validate.
+ * @return true if the date looks valid, false otherwise.
+ */
+
+void	BitcoinExchange::parseDatabaseCsv()
 {
 	std::ifstream file("data.csv");
+
 	if (!file.is_open())
 		throw std::runtime_error("Error: cannot open data.csv");
 
 	std::string line;
-	std::getline(file, line);
+    
+	std::getline(file, line); // skip header
+    
 	while (std::getline(file, line))
 	{
-		size_t comma_pos = line.find(',');
-		if (comma_pos == std::string::npos)
-			throw std::out_of_range("Error: ivalid values");
-		std::string data_str = line.substr(0, comma_pos);
-		std::string value_str = line.substr(comma_pos + 1);
+		size_t commaPosition = line.find(',');
+		if (commaPosition == std::string::npos)
+			throw std::out_of_range("Error: invalid values in data.csv");
+		std::string dataStr = line.substr(0, commaPosition);
+		std::string valueStr = line.substr(commaPosition + 1);
 
 		float value;
-		std::stringstream ss_value(value_str);
+
+		std::stringstream ss_value(valueStr);
+        
 		ss_value >> value;
 
 		if (ss_value.fail() || !ss_value.eof())
-			throw std::out_of_range("Error: invalid parameters");
-		mapa[data_str] = value;
+			throw std::out_of_range("Error: invalid parameters in data.csv");
+		mapa[dataStr] = value;
 	}
+
 	file.close();
 }
 
-bool	isValidDate(const std::string& data_str)
+bool	isValidDate(const std::string& dataStr)
 {
-	if (data_str.length() != 10)
+	if (dataStr.length() != 10)
+	{
 		return (false);
-	if (data_str[4] != '-' || data_str[7] != '-')
+	}
+	if (dataStr[4] != '-' || dataStr[7] != '-')
+	{
 		return (false);
+	}
 
 	int year, month, day;
 	char dash1, dash2;
-	std::stringstream ss(data_str);
+
+	std::stringstream ss(dataStr);
 	ss >> year >> dash1 >> month >> dash2 >> day;
 
 	if (ss.fail() || dash1 != '-' || dash2 != '-')
@@ -96,53 +124,66 @@ bool	isValidDate(const std::string& data_str)
 bool	isValidValue(float value)
 {
 	if (value >= 0 && value <= 1000)
+	{
 		return (true);
+	}
 	return (false);
 }
 
-void	BitcoinExchange::processLine(const std::string& line)
+void	BitcoinExchange::getNextCsvLine(const std::string& line)
 {
-	size_t pipe_pos = line.find('|');
-	if (pipe_pos == std::string::npos)
+	size_t pipePosition = line.find('|');
+
+	if (pipePosition == std::string::npos)
 	{
-		std::cerr << "Error: bad input => " << line << std::endl;
+		std::cerr << RED << "Error: bad input => " << line << RESET << std::endl;
 		return ;
 	}
 
-	std::string data_str = trim(line.substr(0, pipe_pos));
-	std::string value_str = trim(line.substr(pipe_pos + 1));
-	if (!isValidDate(data_str))
+	std::string dataStr = trim(line.substr(0, pipePosition));
+	std::string valueStr = trim(line.substr(pipePosition + 1));
+
+	if (!isValidDate(dataStr))
 	{
-		std::cerr << "Error: bad input => " << data_str << std::endl;
+		std::cerr << RED << "Error: bad input => " << dataStr << RESET << std::endl;
 		return ;
 	}
 
 	float value;
-	std::stringstream ss_value(value_str);
+	std::stringstream ss_value(valueStr);
 	ss_value >> value;
 
 	if (ss_value.fail() || !ss_value.eof())
+	{
 		throw std::runtime_error("Error: invalid number format.");
+	}
 	if (value < 0)
+	{
 		throw std::runtime_error("Error: not a positive number.");
+	}
 	if (value > 1000)
+	{
 		throw std::runtime_error("Error: too large a number.");
+	}
+
 	float rate = 0.0f;
 
-	std::map<std::string, float>::iterator it = mapa.lower_bound(data_str);
-	if (it == mapa.end() || it->first != data_str)
+	std::map<std::string, float>::iterator it = mapa.lower_bound(dataStr);
+	if (it == mapa.end() || it->first != dataStr)
 	{
 		if (it == mapa.begin())
 		{
-			std::cerr << "Error: no data available for date => " << data_str << std::endl;
+			std::cerr << RED << "Error: no data available for date => " << dataStr << RESET << std::endl;
 			return ;
 		}
 		--it;
 	}
+
 	rate = it->second;
+
 	float result = value * rate;
 
-	std::cout << data_str << " => " << value << " = " << result << std::endl;
+	std::cout << dataStr << " => " << value << " = " << result << std::endl;
 	
 }
 

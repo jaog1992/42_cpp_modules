@@ -6,16 +6,29 @@
 /*   By: jde-orma <jde-orma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/10 17:09:47 by jde-orma          #+#    #+#             */
-/*   Updated: 2026/01/10 17:09:51 by jde-orma         ###   ########.fr       */
+/*   Updated: 2026/01/31 18:41:46 by jde-orma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PmergeMe.hpp"
+#include "../incs/Colors.hpp"
 
-void	print_container(const std::vector<int>& data)
+/**
+ * @file main.cpp
+ * @brief Driver for the PmergeMe program: parse input, run sorts and print timings.
+ */
+
+/**
+ * @brief Print the contents of a vector to stdout separated by spaces.
+ *
+ * @param data The vector to print.
+ */
+void	printVector(const std::vector<int>& data)
 {
 	for (size_t i = 0; i < data.size(); i++)
+	{
 		std::cout << data[i] << " ";
+	}
 	std::cout << std::endl;
 }
 
@@ -25,22 +38,22 @@ int main(int argc, char **argv)
 	std::vector<int> vec;
 	std::list<int> lst;
 
-	if (!pmergeme.parse_and_validate(argc, argv, vec, lst))
+	if (!pmergeme.parser(argc, argv, vec, lst))
 	{
-		std::cerr << "Error: invalid input" << std::endl;
-		return (1);
+		std::cerr << RED << "Error: invalid input" << RESET << std::endl;
+		return (EXIT_FAILURE);
 	}
 
 	std::cout << "Before: ";
-	print_container(vec);
+	printVector(vec);
 
 	std::vector<int> vec_copy = vec;
-	pmergeme.sort_and_display_vector(vec);
-	pmergeme.sort_and_display_list(lst);
+	pmergeme.sortVector(vec);
+	pmergeme.sortList(lst);
 	
 	std::cout << "After: ";
-	print_container(vec);
+	printVector(vec);
 
-	return (0);
+	return (EXIT_SUCCESS);
 }
 

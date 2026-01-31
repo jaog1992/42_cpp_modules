@@ -6,7 +6,7 @@
 /*   By: jde-orma <jde-orma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/10 17:08:45 by jde-orma          #+#    #+#             */
-/*   Updated: 2026/01/10 17:14:17 by jde-orma         ###   ########.fr       */
+/*   Updated: 2026/01/31 17:48:53 by jde-orma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,25 +14,40 @@
 #include <fstream>
 #include <string>
 #include <iostream>
+#include "../incs/Colors.hpp"
 
-void process_input_file(const std::string& filename, BitcoinExchange& btc_exchange)
+/**
+ * @brief Process an input file line-by-line and forward lines to the exchange.
+ *
+ * The file is expected to contain lines with the format `YYYY-MM-DD | value`.
+ * Each non-empty line is passed to `BitcoinExchange::getNextCsvLine` and
+ * any exceptions are reported to stderr.
+ *
+ * @param filename Path to the input file.
+ * @param btc_exchange Reference to a prepared BitcoinExchange instance.
+ */
+void btc(const std::string& filename, BitcoinExchange& btc_exchange)
 {
 	std::ifstream input_file(filename.c_str());
+
 	if (!input_file.is_open())
-		throw std::runtime_error("Error: could not open file.");
+		throw std::runtime_error("Error opening file.");
+
 	std::string line;
+
 	std::getline(input_file, line);
+	
 	while (std::getline(input_file, line))
 	{
 		try
 		{
 			if (line.empty())
 				continue;
-			btc_exchange.processLine(line);
+			btc_exchange.getNextCsvLine(line);
 		}
 		catch (const std::exception& e)
 		{
-			std::cerr << e.what() << std::endl;
+			std::cerr << RED << e.what() << RESET << std::endl;
 		}
 	}
 	input_file.close();
@@ -42,22 +57,22 @@ int main(int argc, char **argv)
 {
 	if (argc != 2)
 	{
-		std::cerr << "Error: invalid argument, please provide a file." << std::endl;
-		return (1);
+		std::cerr << RED << "Invalid argument number - Usage: btc <filename>" << RESET << std::endl;
+		return (EXIT_FAILURE);
 	}
 
 	try
 	{
 		BitcoinExchange btc_exchange; 
 
-		btc_exchange.parse_csv();
-		process_input_file(argv[1], btc_exchange);
+		btc_exchange.parseDatabaseCsv();
+		btc(argv[1], btc_exchange);
 	}
 	catch (const std::exception& e)
 	{
-		std::cerr << e.what() << std::endl;
+		std::cerr << RED << e.what() << RESET << std::endl;
 	}
 
-	return (0);
+	return (EXIT_SUCCESS);
 }
 

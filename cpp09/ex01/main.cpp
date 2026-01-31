@@ -6,17 +6,23 @@
 /*   By: jde-orma <jde-orma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/10 17:09:08 by jde-orma          #+#    #+#             */
-/*   Updated: 2026/01/10 17:09:14 by jde-orma         ###   ########.fr       */
+/*   Updated: 2026/01/31 18:20:31 by jde-orma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "RPN.hpp"
+#include "../incs/Colors.hpp"
+
+/**
+ * @file main.cpp
+ * @brief Small driver for the RPN evaluator.
+ */
 
 int main(int argc, char **argv)
 {
 	if (argc != 2)
 	{
-		std::cerr << "Error: invalid argument." << std::endl;
+		std::cerr << RED << "Error: invalid argument." << RESET << std::endl;
 		return (0);
 	}
 
@@ -27,7 +33,7 @@ int main(int argc, char **argv)
 	}
 	catch(const std::exception& e)
 	{
-		std::cerr << e.what() << std::endl;
+		std::cerr << RED << e.what() << RESET << std::endl;
 	}
 
 	return (0);
